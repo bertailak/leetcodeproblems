@@ -1,6 +1,5 @@
 package algorithm;
 
-
 import java.util.*;
 
 /*
@@ -15,6 +14,12 @@ import java.util.*;
 public class AlgorithmEasy {
 
     public static int[] runningSum(int[] nums) {
+//        int[] n = {1, 2, 3};
+//        n = runningSum(n);
+//        for (int i = 0; i < n.length; i++) {
+//            System.out.print(n[i] + " ");
+//        }
+
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
@@ -24,10 +29,17 @@ public class AlgorithmEasy {
     }
 
     public static String defangIPaddr(String address) {
+        //        System.out.println(defangIPaddr("1.1.1.1"));
+
         return address.replace(".", "[.]");
     }
 
     public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+//        List<Boolean> b = kidsWithCandies(new int[]{2, 3, 5, 1, 3}, 3);
+//        for (int i = 0; i < b.size(); i++) {
+//            System.out.print(b.get(i) + " ");
+//        }
+
         List<Boolean> b = new ArrayList<Boolean>();
         int max = candies[0];
         for (int i = 1; i < candies.length; i++) {
@@ -44,6 +56,9 @@ public class AlgorithmEasy {
     }
 
     public static int maximumWealth(int[][] accounts) {
+//        int[][] accounts = {{1, 2, 3}, {3, 2, 1}};
+//        System.out.println(maximumWealth(accounts));
+
         int max = 0;
         for (int i = 0; i < accounts.length; i++) {
             int sum = accounts[i][0];
@@ -56,6 +71,11 @@ public class AlgorithmEasy {
     }
 
     public static int[] shuffle(int[] nums, int n) {
+//        int[] a = shuffle(new int[]{2, 5, 1, 3, 4, 7}, 3);
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
+
         int[] res = new int[nums.length];
         for (int i = 0; i < res.length / 2; i++) {
             res[2 * i] = nums[i];
@@ -65,6 +85,8 @@ public class AlgorithmEasy {
     }
 
     public static int numIdenticalPairs(int[] nums) {
+//        System.out.println(numIdenticalPairs(new int[]{1,2,3}));
+
         int good = 0;
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
@@ -77,6 +99,8 @@ public class AlgorithmEasy {
     }
 
     public static int numJewelsInStones(String jewels, String stones) {
+//        System.out.println(numJewelsInStones("aA", "aAAbbbb"));
+
         int count = 0;
         for (int i = 0; i < stones.length(); i++) {
             if (jewels.indexOf(stones.charAt(i)) > -1) {
@@ -105,6 +129,11 @@ public class AlgorithmEasy {
     }
 
     public static int[] smallerNumbersThanCurrent(int[] nums) {
+//        int[] res = smallerNumbersThanCurrent(new int[]{1, 3, 2, 3});
+//        for (int i = 0; i < res.length; i++) {
+//            System.out.print(res[i] + " ");
+//        }
+
         int[] nums2 = nums.clone();
         Arrays.sort(nums2);
         int[] res = new int[nums.length];
@@ -120,10 +149,13 @@ public class AlgorithmEasy {
     }
 
     public static String interpret(String command) {
+//        System.out.println(interpret("G()(al)"));
         return command.replace("()", "o").replace("(al)", "al");
     }
 
     public static int[] decode(int[] encoded, int first) {
+//        decode(new int[]{1, 2, 3}, 1);
+
         int[] arr = new int[encoded.length + 1];
         arr[0] = first;
         for (int i = 0; i < encoded.length; i++) {
@@ -133,6 +165,8 @@ public class AlgorithmEasy {
     }
 
     public static String restoreString(String s, int[] indices) {
+//        System.out.println(restoreString("codeleet", new int[]{4, 5, 6, 7, 0, 2, 1, 3}));
+
         char[] c = new char[indices.length];
         for (int i = 0; i < c.length; i++) {
             c[indices[i]] = s.charAt(i);
@@ -141,6 +175,8 @@ public class AlgorithmEasy {
     }
 
     public static int numberOfSteps(int num) {
+//        System.out.println(numberOfSteps(14));
+
         int step = 0;
 
         while (num > 0) {
@@ -156,6 +192,8 @@ public class AlgorithmEasy {
     }
 
     public static int subtractProductAndSum(int n) {
+//        System.out.println(subtractProductAndSum(234));
+
         int product = 1;
         int sum = 0;
         while (n > 0) {
@@ -168,6 +206,11 @@ public class AlgorithmEasy {
     }
 
     public static int[] decompressRLElist(int[] nums) {
+//        int[] a = decompressRLElist(new int[]{1, 2, 3, 4});
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
+
         ArrayList<Integer> arr = new ArrayList<>();
         for (int i = 0; i < nums.length / 2; i++) {
             for (int j = 0; j < nums[2 * i]; j++) {
@@ -178,6 +221,11 @@ public class AlgorithmEasy {
     }
 
     public static int[] createTargetArray(int[] nums, int[] index) {
+//        int[] a = createTargetArray(new int[]{1, 2, 3, 4, 0}, new int[]{0, 1, 2, 3, 0});
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
+
         List<Integer> list = new LinkedList<>();
         for (int i = 0; i < index.length; i++) {
             list.add(index[i], nums[i]);
@@ -186,6 +234,8 @@ public class AlgorithmEasy {
     }
 
     public static int xorOperation(int n, int start) {
+//        System.out.println(xorOperation(10, 5));
+
         int res = 0;
         for (int i = 0; i < n; i++) {
             res = res ^ (start + 2 * i);
@@ -194,6 +244,8 @@ public class AlgorithmEasy {
     }
 
     public static int balancedStringSplit(String s) {
+//        System.out.println(balancedStringSplit("RLRRRLLRLL"));
+
         int count = 0;
         Stack<Character> st = new Stack<>();
 
@@ -216,6 +268,8 @@ public class AlgorithmEasy {
     }
 
     public static int countConsistentStrings(String allowed, String[] words) {
+//        System.out.println(countConsistentStrings("cad", new String[]{"cc", "acd", "b", "ba", "bac", "bad", "ac", "d"}));
+
         int count = 0;
 
         for (int i = 0; i < words.length; i++) {
@@ -230,6 +284,8 @@ public class AlgorithmEasy {
     }
 
     public static boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+//        System.out.println(arrayStringsAreEqual(new String[]{"ac", "c"}, new String[]{"a", "bc"}));
+
         if (String.join("", word1).equals(String.join("", word2))) {
             return true;
         }
@@ -237,6 +293,8 @@ public class AlgorithmEasy {
     }
 
     public static int maxDepth(String s) {
+//        System.out.println(maxDepth("1+(2*3)/(2-1)"));
+
         int depth = 0;
         int max = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -286,6 +344,13 @@ public class AlgorithmEasy {
     }
 
     public static int rangeSumBST(TreeNode root, int low, int high) {
+//        int[] n = new int[]{10, 5, 15, 3, 7, 13, 18, 1, 6};
+//        TreeNode node = new TreeNode(n[0]);
+//        for (int i = 1; i < n.length; i++) {
+//            node.insert_Recursive(node, n[i]);
+//        }
+//        System.out.println(rangeSumBST(node, 6, 10));
+
         if (root == null) {
             return 0;
         } else {
@@ -296,10 +361,22 @@ public class AlgorithmEasy {
     }
 
     public static int numberOfMatches(int n) {
+//        System.out.println(numberOfMatches(7));
+
         return --n;
     }
 
     static class OrderedStream {
+//        OrderedStream obj = new OrderedStream(5);
+//        int[] ind = new int[]{3, 1, 2, 5, 4};
+//        String[] val = new String[]{"ccccc", "aaaaa", "bbbbb", "eeeee", "ddddd"};
+//        for (int i = 0; i < val.length; i++) {
+//            List<String> s = obj.insert(ind[i], val[i]);
+//            for (String s2 : s) {
+//                System.out.print(s2 + ":");
+//            }
+//            System.out.println();
+//        }
 
         int ptr;
         List<String> s;
@@ -327,6 +404,8 @@ public class AlgorithmEasy {
     }
 
     public static int sumOddLengthSubarrays(int[] arr) {
+//        System.out.println(sumOddLengthSubarrays(new int[]{1, 2}));
+
         int total = 0;
 
         for (int i = 0; i < arr.length; i++) {
@@ -343,6 +422,8 @@ public class AlgorithmEasy {
     }
 
     public static int largestAltitude(int[] gain) {
+//        System.out.println(largestAltitude(new int[]{-4, -3, -2, -1, 4, 3, 2}));
+
         int max = 0;
         int sum = 0;
 
@@ -357,6 +438,8 @@ public class AlgorithmEasy {
     }
 
     public static int countGoodTriplets(int[] arr, int a, int b, int c) {
+//        System.out.println(countGoodTriplets(new int[]{1, 1, 2, 2, 3}, 0, 0, 1));
+
         int count = 0;
         for (int i = 0; i < arr.length - 2; i++) {
             for (int j = i + 1; j < arr.length - 1; j++) {
@@ -373,6 +456,8 @@ public class AlgorithmEasy {
     }
 
     public static String toLowerCase(String str) {
+//        System.out.println(toLowerCase("al&phaBET"));
+
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
@@ -416,68 +501,5 @@ public class AlgorithmEasy {
 //        System.out.println(minTimeToVisitAllPoints(new int[][]{{559, 511}, {932, 618}, {-623, -443}, {431, 91}, {838, -127}, {773, -917}, {-500, -910}, {830, -417}, {-870, 73}, {-864, -600}, {450, 535}, {-479, -370}, {856, 573}, {-549, 369}, {529, -462}, {-839, -856}, {-515, -447}, {652, 197}, {-83, 345}, {-69, 423}, {310, -737}, {78, -201}, {443, 958}, {-311, 988}, {-477, 30}, {-376, -153}, {-272, 451}, {322, -125}, {-114, -214}, {495, 33}, {371, -533}, {-393, -224}, {-405, -633}, {-693, 297}, {504, 210}, {-427, -231}, {315, 27}, {991, 322}, {811, -746}, {252, 373}, {-737, -867}, {-137, 130}, {507, 380}, {100, -638}, {-296, 700}, {341, 671}, {-944, 982}, {937, -440}, {40, -929}, {-334, 60}, {-722, -92}, {-35, -852}, {25, -495}, {185, 671}, {149, -452}}));
 //        System.out.println(minTimeToVisitAllPoints(new int[][]{{3, 2}, {-2, 2}}));
         System.out.println(minTimeToVisitAllPoints(new int[][]{{1, 1}, {3, 4}, {-1, 0}}));
-//        System.out.println(toLowerCase("al&phaBET"));
-//        System.out.println(toLowerCase("al&phaBET"));
-//        System.out.println(countGoodTriplets(new int[]{1, 1, 2, 2, 3}, 0, 0, 1));
-//        System.out.println(largestAltitude(new int[]{-4, -3, -2, -1, 4, 3, 2}));
-//        System.out.println(sumOddLengthSubarrays(new int[]{1, 2}));
-
-//        OrderedStream obj = new OrderedStream(5);
-//        int[] ind = new int[]{3, 1, 2, 5, 4};
-//        String[] val = new String[]{"ccccc", "aaaaa", "bbbbb", "eeeee", "ddddd"};
-//        for (int i = 0; i < val.length; i++) {
-//            List<String> s = obj.insert(ind[i], val[i]);
-//            for (String s2 : s) {
-//                System.out.print(s2 + ":");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println(numberOfMatches(7));
-//        int[] n = new int[]{10, 5, 15, 3, 7, 13, 18, 1, 6};
-//        TreeNode node = new TreeNode(n[0]);
-//        for (int i = 1; i < n.length; i++) {
-//            node.insert_Recursive(node, n[i]);
-//        }
-//        System.out.println(rangeSumBST(node, 6, 10));
-//        System.out.println(maxDepth("1+(2*3)/(2-1)"));
-//        System.out.println(arrayStringsAreEqual(new String[]{"ac", "c"}, new String[]{"a", "bc"}));
-//        System.out.println(countConsistentStrings("cad", new String[]{"cc", "acd", "b", "ba", "bac", "bad", "ac", "d"}));
-//        System.out.println(balancedStringSplit("RLRRRLLRLL"));
-//        System.out.println(xorOperation(10, 5));
-//        int[] a = createTargetArray(new int[]{1, 2, 3, 4, 0}, new int[]{0, 1, 2, 3, 0});
-//        for (int i = 0; i < a.length; i++) {
-//            System.out.print(a[i] + " ");
-//        }
-//        int[] a = decompressRLElist(new int[]{1, 2, 3, 4});
-//        for (int i = 0; i < a.length; i++) {
-//            System.out.print(a[i] + " ");
-//        }
-//        System.out.println(subtractProductAndSum(234));
-//        System.out.println(numberOfSteps(14));
-//        System.out.println(restoreString("codeleet", new int[]{4, 5, 6, 7, 0, 2, 1, 3}));
-//        decode(new int[]{1, 2, 3}, 1);
-//        System.out.println(interpret("G()(al)"));
-//        int[] res = smallerNumbersThanCurrent(new int[]{1, 3, 2, 3});
-//        for (int i = 0; i < res.length; i++) {
-//            System.out.print(res[i] + " ");
-//        }
-//        System.out.println(numJewelsInStones("aA", "aAAbbbb"));
-//        int[] n = {1, 2, 3};
-//        n = runningSum(n);
-//        for (int i = 0; i < n.length; i++) {
-//            System.out.print(n[i] + " ");
-//        }
-//        System.out.println(defangIPaddr("1.1.1.1"));
-//        List<Boolean> b = kidsWithCandies(new int[]{2, 3, 5, 1, 3}, 3);
-//        for (int i = 0; i < b.size(); i++) {
-//            System.out.print(b.get(i) + " ");
-//        }
-//        int[][] accounts = {{1, 2, 3}, {3, 2, 1}};
-//        System.out.println(maximumWealth(accounts));
-//        int[] a = shuffle(new int[]{2, 5, 1, 3, 4, 7}, 3);
-//        for (int i = 0; i < a.length; i++) {
-//            System.out.print(a[i] + " ");
-//        }
-//        System.out.println(numIdenticalPairs(new int[]{1,2,3}));
     }
 }
