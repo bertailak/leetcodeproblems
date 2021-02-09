@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author s_bertailak
  */
-public class Problem00001480 {
+public class AlgorithmEasy {
 
     public static int[] runningSum(int[] nums) {
         int sum = 0;
