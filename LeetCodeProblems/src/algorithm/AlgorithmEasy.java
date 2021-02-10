@@ -497,6 +497,214 @@ public class AlgorithmEasy {
         return step;
     }
 
+    public static int findNumbers(int[] nums) {
+//        System.out.println(findNumbers(new int[]{555, 901, 482, 1771}));
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int len = 0;
+            while (nums[i] > 0) {
+                nums[i] /= 10;
+                len++;
+            }
+            if (len % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static String removeOuterParentheses(String S) {
+//        System.out.println(removeOuterParentheses("(()())()(()(()))"));
+        String res = "";
+        int count = 0;
+        StringBuilder ss = new StringBuilder();
+        for (int i = 0; i < S.length(); i++) {
+            if (S.charAt(i) == '(') {
+                count++;
+            } else {
+                count--;
+            }
+            ss.append(S.charAt(i));
+            if (count == 0) {
+                res = res + ss.toString().substring(1, ss.length() - 1);
+                ss = new StringBuilder();
+            }
+        }
+        return res;
+    }
+
+    public static int oddCells(int n, int m, int[][] indices) {
+//        System.out.println(oddCells(2, 2, new int[][]{{0, 0}, {1, 1}}));
+
+        int count = 0;
+
+        int[][] a = new int[n][m];
+
+        for (int i = 0; i < indices.length; i++) {
+            for (int j = 0; j < m; j++) {
+                if (++a[indices[i][0]][j] % 2 == 1) {
+                    count++;
+                } else {
+                    count--;
+                }
+            }
+            for (int j = 0; j < n; j++) {
+                if (++a[j][indices[i][1]] % 2 == 1) {
+                    count++;
+                } else {
+                    count--;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static int uniqueMorseRepresentations(String[] words) {
+//        System.out.println(uniqueMorseRepresentations(new String[]{"gin", "zen", "gig", "msg"}));
+        String[] morse = new String[]{".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+        HashSet<String> codes = new HashSet<>();
+        for (int i = 0; i < words.length; i++) {
+            StringBuilder st = new StringBuilder();
+            for (int j = 0; j < words[i].length(); j++) {
+                st.append(morse[words[i].charAt(j) - 'a']);
+            }
+            codes.add(st.toString());
+        }
+        return codes.size();
+    }
+
+    public static int diagonalSum(int[][] mat) {
+//        System.out.println(diagonalSum(new int[][]{{1, 1, 1}, {1, 2, 1}, {1, 1, 1}}));
+        int sum = 0;
+        for (int i = 0; i < mat.length; i++) {
+            sum += mat[i][i];
+            if (i != mat.length - 1 - i) {
+                sum += mat[i][mat.length - 1 - i];
+            }
+        }
+        return sum;
+    }
+
+    public static int[][] flipAndInvertImage(int[][] A) {
+//        int[][] a = flipAndInvertImage(new int[][]{{1, 1, 1}, {1, 1, 1}, {1, 1, 1}});
+//        for (int i = 0; i < a.length; i++) {
+//            for (int j = 0; j < a.length; j++) {
+//                System.out.print(a[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A.length / 2; j++) {
+                int swap = A[i][j];
+                A[i][j] = 1 - A[i][A.length - 1 - j];
+                A[i][A.length - 1 - j] = 1 - swap;
+            }
+            if (A.length % 2 == 1) {
+                A[i][A.length / 2] = 1 - A[i][A.length / 2];
+            }
+        }
+        return A;
+    }
+
+    public static int maximum69Number(int num) {
+//        System.out.println(maximum69Number(9669));
+
+        char[] c = (num + "").toCharArray();
+        for (int j = 0; j < c.length; j++) {
+            if (c[j] == '6') {
+                c[j] = '9';
+                break;
+            }
+        }
+        return Integer.parseInt(new String(c));
+    }
+
+    public static int sumOfUnique(int[] nums) {
+//        System.out.println(sumOfUnique(new int[]{1,2,3,4,5}));
+
+        int sum = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                map.replace(nums[i], map.get(nums[i]) + 1);
+            } else {
+                map.put(nums[i], 0);
+            }
+        }
+        for (Integer integer : map.keySet()) {
+            if (map.get(integer) == 0) {
+                sum += integer;
+            }
+        }
+        return sum;
+    }
+
+    public static int countGoodRectangles(int[][] rectangles) {
+//        System.out.println(countGoodRectangles(new int[][]{{2,3},{3,7},{4,3},{3,7}}));
+
+        int count = 0;
+        int poss = Math.min(rectangles[0][0], rectangles[0][1]);
+
+        for (int i = 0; i < rectangles.length; i++) {
+            rectangles[i][0] = Math.min(rectangles[i][0], rectangles[i][1]);
+            if (poss < rectangles[i][0]) {
+                poss = rectangles[i][0];
+            }
+        }
+
+        for (int i = 0; i < rectangles.length; i++) {
+            if (poss == rectangles[i][0]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static boolean halvesAreAlike(String s) {
+//        System.out.println(halvesAreAlike("AbCdEfGh"));
+
+        List<Character> l = new ArrayList<>();
+        l.add('a');
+        l.add('e');
+        l.add('i');
+        l.add('o');
+        l.add('u');
+        l.add('A');
+        l.add('E');
+        l.add('I');
+        l.add('O');
+        l.add('U');
+
+        int count1 = 0;
+        int count2 = 0;
+
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (l.indexOf(s.charAt(i)) >= 0) {
+                count1++;
+            }
+            if (l.indexOf(s.charAt((s.length() / 2) + i)) >= 0) {
+                count2++;
+            }
+        }
+
+        return count1 == count2;
+    }
+
+    public static int minDeletionSize(String[] strs) {
+//        System.out.println(minDeletionSize(new String[]{"zyx","wvu","tsr"}));
+        int count = 0;
+        for (int i = 0; i < strs[0].length(); i++) {
+            for (int j = 0; j < strs.length - 1; j++) {
+                if (strs[j].charAt(i) > strs[j + 1].charAt(i)) {
+                    count++;
+                    break;
+                }
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(minTimeToVisitAllPoints(new int[][]{{559, 511}, {932, 618}, {-623, -443}, {431, 91}, {838, -127}, {773, -917}, {-500, -910}, {830, -417}, {-870, 73}, {-864, -600}, {450, 535}, {-479, -370}, {856, 573}, {-549, 369}, {529, -462}, {-839, -856}, {-515, -447}, {652, 197}, {-83, 345}, {-69, 423}, {310, -737}, {78, -201}, {443, 958}, {-311, 988}, {-477, 30}, {-376, -153}, {-272, 451}, {322, -125}, {-114, -214}, {495, 33}, {371, -533}, {-393, -224}, {-405, -633}, {-693, 297}, {504, 210}, {-427, -231}, {315, 27}, {991, 322}, {811, -746}, {252, 373}, {-737, -867}, {-137, 130}, {507, 380}, {100, -638}, {-296, 700}, {341, 671}, {-944, 982}, {937, -440}, {40, -929}, {-334, 60}, {-722, -92}, {-35, -852}, {25, -495}, {185, 671}, {149, -452}}));
 //        System.out.println(minTimeToVisitAllPoints(new int[][]{{3, 2}, {-2, 2}}));
