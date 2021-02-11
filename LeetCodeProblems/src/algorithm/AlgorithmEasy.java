@@ -470,29 +470,28 @@ public class AlgorithmEasy {
     }
 
     public static int minTimeToVisitAllPoints(int[][] points) {
-        int step = 0;
-        int iter = 1;
-        while (iter < points.length) {
-            int difx = points[iter][0] - points[iter - 1][0];
-            int dify = points[iter][1] - points[iter - 1][1];
-            if (Math.abs(difx) < Math.abs(dify)) {
-                System.out.println(difx + " = " + points[iter][0] + " - " + points[iter - 1][0]);
-                step += Math.abs(difx);
-                if ((difx >= 0 && dify >= 0) || (difx <= 0 && dify <= 0)) {
-                    points[iter - 1][1] += difx;
-                }
+//        System.out.println(minTimeToVisitAllPoints(new int[][]{{559, 511}, {932, 618}, {-623, -443}, {431, 91}, {838, -127}, {773, -917}, {-500, -910}, {830, -417}, {-870, 73}, {-864, -600}, {450, 535}, {-479, -370}, {856, 573}, {-549, 369}, {529, -462}, {-839, -856}, {-515, -447}, {652, 197}, {-83, 345}, {-69, 423}, {310, -737}, {78, -201}, {443, 958}, {-311, 988}, {-477, 30}, {-376, -153}, {-272, 451}, {322, -125}, {-114, -214}, {495, 33}, {371, -533}, {-393, -224}, {-405, -633}, {-693, 297}, {504, 210}, {-427, -231}, {315, 27}, {991, 322}, {811, -746}, {252, 373}, {-737, -867}, {-137, 130}, {507, 380}, {100, -638}, {-296, 700}, {341, 671}, {-944, 982}, {937, -440}, {40, -929}, {-334, 60}, {-722, -92}, {-35, -852}, {25, -495}, {185, 671}, {149, -452}}));
+//        System.out.println(minTimeToVisitAllPoints(new int[][]{{3, 2}, {-2, 2}}));
+//        System.out.println(minTimeToVisitAllPoints(new int[][]{{1, 1}, {3, 4}, {-1, 0}}));
 
-                step += Math.abs(points[iter][1] - points[iter - 1][1]);
-            } else {
-                step += Math.abs(dify);
-                System.out.println(dify + " = " + points[iter][1] + " - " + points[iter - 1][1]);
-                if ((difx >= 0 && dify >= 0) || (difx <= 0 && dify <= 0)) {
-                    points[iter - 1][0] += dify;
+        int[][] dir = new int[][]{{-1, 1}, {1, 1}, {-1, -1}, {1, -1}, {0, 1}, {-1, 0}, {0, 0}, {1, 0}, {0, -1}};
+        int step = 0;
+        int iter = 0;
+        while (iter < points.length - 1) {
+            for (int i = 0; i < dir.length; i++) {
+                int diff = Math.abs(points[iter + 1][0] - points[iter][0]) + Math.abs(points[iter + 1][1] - points[iter][1]);
+                if (Math.abs(points[iter + 1][0] - (points[iter][0] + dir[i][0])) + Math.abs(points[iter + 1][1] - (points[iter][1] + dir[i][1])) < diff) {
+                    step++;
+                    points[iter][0] += dir[i][0];
+                    points[iter][1] += dir[i][1];
+                    break;
                 }
-                step += Math.abs(points[iter][0] - points[iter - 1][0]);
             }
-            System.out.println(step + " > " + points[iter][0] + ":" + points[iter][1]);
-            iter++;
+
+            if (points[iter][0] == points[iter + 1][0]
+                    && points[iter][1] == points[iter + 1][1]) {
+                iter++;
+            }
         }
         return step;
     }
@@ -705,9 +704,27 @@ public class AlgorithmEasy {
         return count;
     }
 
+    public static String freqAlphabets(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        int i = 0;
+        String sub = s.substring(0, 1);
+        if (s.length() > 2) {
+            s.substring(0, 1);
+        }
+        while (i < s.length()) {
+            s.substring(i, i + 3);
+            if (s.charAt(2) == '#') {
+                
+            }else{
+            
+            }
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
-//        System.out.println(minTimeToVisitAllPoints(new int[][]{{559, 511}, {932, 618}, {-623, -443}, {431, 91}, {838, -127}, {773, -917}, {-500, -910}, {830, -417}, {-870, 73}, {-864, -600}, {450, 535}, {-479, -370}, {856, 573}, {-549, 369}, {529, -462}, {-839, -856}, {-515, -447}, {652, 197}, {-83, 345}, {-69, 423}, {310, -737}, {78, -201}, {443, 958}, {-311, 988}, {-477, 30}, {-376, -153}, {-272, 451}, {322, -125}, {-114, -214}, {495, 33}, {371, -533}, {-393, -224}, {-405, -633}, {-693, 297}, {504, 210}, {-427, -231}, {315, 27}, {991, 322}, {811, -746}, {252, 373}, {-737, -867}, {-137, 130}, {507, 380}, {100, -638}, {-296, 700}, {341, 671}, {-944, 982}, {937, -440}, {40, -929}, {-334, 60}, {-722, -92}, {-35, -852}, {25, -495}, {185, 671}, {149, -452}}));
-//        System.out.println(minTimeToVisitAllPoints(new int[][]{{3, 2}, {-2, 2}}));
-        System.out.println(minTimeToVisitAllPoints(new int[][]{{1, 1}, {3, 4}, {-1, 0}}));
+        System.out.println(freqAlphabets("25#"));
     }
 }
