@@ -705,26 +705,45 @@ public class AlgorithmEasy {
     }
 
     public static String freqAlphabets(String s) {
-        StringBuilder sb = new StringBuilder();
+        HashMap<String, String> dict = new HashMap<>();
+        dict.put("10#", "j");
+        dict.put("11#", "k");
+        dict.put("12#", "l");
+        dict.put("13#", "m");
+        dict.put("14#", "n");
+        dict.put("15#", "o");
+        dict.put("16#", "p");
+        dict.put("17#", "q");
+        dict.put("18#", "r");
+        dict.put("19#", "s");
+        dict.put("20#", "t");
+        dict.put("21#", "u");
+        dict.put("22#", "v");
+        dict.put("23#", "w");
+        dict.put("24#", "x");
+        dict.put("25#", "y");
+        dict.put("26#", "z");
+        HashMap<String, String> dict2 = new HashMap<>();
+        dict2.put("1", "a");
+        dict2.put("2", "b");
+        dict2.put("3", "c");
+        dict2.put("4", "d");
+        dict2.put("5", "e");
+        dict2.put("6", "f");
+        dict2.put("7", "g");
+        dict2.put("8", "h");
+        dict2.put("9", "i");
 
-        int i = 0;
-        String sub = s.substring(0, 1);
-        if (s.length() > 2) {
-            s.substring(0, 1);
+        for (String key : dict.keySet()) {
+            s = s.replaceAll(key, dict.get(key));
         }
-        while (i < s.length()) {
-            s.substring(i, i + 3);
-            if (s.charAt(2) == '#') {
-                
-            }else{
-            
-            }
+        for (String key : dict2.keySet()) {
+            s = s.replaceAll(key, dict2.get(key));
         }
-
-        return sb.toString();
+        return s;
     }
 
     public static void main(String[] args) {
-        System.out.println(freqAlphabets("25#"));
+        System.out.println(freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"));
     }
 }
