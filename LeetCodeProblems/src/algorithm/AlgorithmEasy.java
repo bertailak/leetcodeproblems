@@ -705,6 +705,8 @@ public class AlgorithmEasy {
     }
 
     public static String freqAlphabets(String s) {
+//        System.out.println(freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"));
+
         HashMap<String, String> dict = new HashMap<>();
         dict.put("10#", "j");
         dict.put("11#", "k");
@@ -743,7 +745,74 @@ public class AlgorithmEasy {
         return s;
     }
 
+    public static int busyStudent(int[] startTime, int[] endTime, int queryTime) {
+//        System.out.println(busyStudent(new int[]{1, 2, 3}, new int[]{3, 2, 7}, 4));
+
+        int count = 0;
+        for (int i = 0; i < endTime.length; i++) {
+            if (startTime[i] <= queryTime && queryTime <= endTime[i]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int maxProduct(int[] nums) {
+//        System.out.println(maxProduct(new int[]{10, 2, 5, 2}));
+
+        int max = (nums[0] - 1) * (nums[1] - 1);
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                max = Math.max(max, (nums[i] - 1) * (nums[j] - 1));
+            }
+        }
+
+        return max;
+    }
+
+    public static String destCity(List<List<String>> paths) {
+//        List<String> d1 = new ArrayList<>();
+//        d1.add("London");
+//        d1.add("New York");
+//        List<String> d2 = new ArrayList<>();
+//        d2.add("New York");
+//        d2.add("Lima");
+//        List<String> d3 = new ArrayList<>();
+//        d3.add("Lima");
+//        d3.add("Sao Paulo");
+//        List<List<String>> d = new ArrayList<>();
+//        d.add(d1);
+//        d.add(d2);
+//        d.add(d3);
+//        System.out.println(destCity(d));
+        
+        boolean[] b = new boolean[paths.size() + 1];
+
+        HashMap<String, Integer> map = new HashMap<>();
+
+        int iter = 0;
+        for (int i = 0; i < paths.size(); i++) {
+
+            if (!map.containsKey(paths.get(i).get(0))) {
+                map.put(paths.get(i).get(0), iter++);
+            }
+            if (!map.containsKey(paths.get(i).get(1))) {
+                map.put(paths.get(i).get(1), iter++);
+            }
+            b[map.get(paths.get(i).get(0))] = true;
+        }
+        String res = paths.get(0).get(0);
+
+        for (String key : map.keySet()) {
+            if (!b[map.get(key)]) {
+                res = key;
+            }
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
-        System.out.println(freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"));
+
     }
 }
