@@ -785,7 +785,7 @@ public class AlgorithmEasy {
 //        d.add(d2);
 //        d.add(d3);
 //        System.out.println(destCity(d));
-        
+
         boolean[] b = new boolean[paths.size() + 1];
 
         HashMap<String, Integer> map = new HashMap<>();
@@ -812,7 +812,99 @@ public class AlgorithmEasy {
         return res;
     }
 
-    public static void main(String[] args) {
+    public static int[] sumZero(int n) {
+//        int[] a = sumZero(4);
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
 
+        int[] a = new int[n];
+        if (n % 2 == 1) {
+            a[n - 1] = 0;
+            n--;
+        }
+        for (int i = 0; i < n / 2; i++) {
+            a[2 * i] = (i + 1);
+            a[2 * i + 1] = -(i + 1);
+        }
+        return a;
+    }
+
+    public static String sortString(String s) {
+//        System.out.println(sortString("aaaabbbbcccc"));
+
+        int[] a = new int[26];
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+            a[s.charAt(i) - 'a']++;
+        }
+
+        while (sb.length() < s.length()) {
+            for (int i = 0; i < a.length; i++) {
+                if (a[i]-- > 0) {
+                    sb.append((char) ('a' + i));
+                }
+            }
+            for (int i = a.length - 1; i >= 0; i--) {
+                if (a[i]-- > 0) {
+                    sb.append((char) ('a' + i));
+                }
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static String generateTheString(int n) {
+//        System.out.println(generateTheString(4));
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < n - (1 - n % 2); i++) {
+            sb.append('a');
+        }
+        if (n % 2 == 0) {
+            sb.append('b');
+        }
+
+        return sb.toString();
+    }
+
+    public static int countNegatives(int[][] grid) {
+//        System.out.println(countNegatives(new int[][]{{4, 3, 2, -1}, {3, 2, 1, -1}, {1, 1, -1, -2}, {-1, -1, -2, -3}}));
+
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            int j = grid[0].length - 1;
+            while (j >= 0 && 0 > grid[i][j]) {
+                j--;
+            }
+            count += grid[0].length - 1 - j;
+        }
+        return count;
+    }
+
+    public static List<Integer> selfDividingNumbers(int left, int right) {
+//        List<Integer> l = selfDividingNumbers(1, 22);
+//        for (int i = 0; i < l.size(); i++) {
+//            System.out.print(l.get(i) + " ");
+//        }
+        
+        List<Integer> l = new ArrayList<>();
+        for (int i = left; i <= right; i++) {
+            StringBuilder sb = new StringBuilder(Integer.toString(i));
+            int j = 0;
+            while (j < sb.length() && sb.charAt(j) != '0' && i % (sb.charAt(j) - '0') == 0) {
+                j++;
+            }
+            if (j == sb.length()) {
+                l.add(i);
+            }
+        }
+        return l;
+    }
+
+    public static void main(String[] args) {
     }
 }
