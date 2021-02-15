@@ -890,7 +890,7 @@ public class AlgorithmEasy {
 //        for (int i = 0; i < l.size(); i++) {
 //            System.out.print(l.get(i) + " ");
 //        }
-        
+
         List<Integer> l = new ArrayList<>();
         for (int i = left; i <= right; i++) {
             StringBuilder sb = new StringBuilder(Integer.toString(i));
@@ -903,6 +903,62 @@ public class AlgorithmEasy {
             }
         }
         return l;
+    }
+
+    public static int[] finalPrices(int[] prices) {
+//        int[] a = finalPrices(new int[]{10, 1, 1, 6});
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
+
+        for (int i = 0; i < prices.length - 1; i++) {
+            int j = i + 1;
+            while (j < prices.length) {
+
+                if (prices[i] >= prices[j]) {
+                    prices[i] -= prices[j];
+                    break;
+                }
+
+                j++;
+            }
+        }
+        return prices;
+    }
+
+    public static int[] sortArrayByParity(int[] A) {
+//        int[] a = sortArrayByParity(new int[]{3, 1, 2, 4});
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
+
+        List<Integer> a = new ArrayList<>();
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] % 2 == 0) {
+                a.add(0, A[i]);
+            } else {
+                a.add(A[i]);
+            }
+        }
+        for (int i = 0; i < a.size(); i++) {
+            A[i] = a.get(i);
+        }
+
+        return A;
+    }
+
+    public static int[] replaceElements(int[] arr) {
+//        int[] a = replaceElements(new int[]{17, 18, 5, 4, 6, 1});
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
+
+        int[] a = new int[arr.length];
+        a[a.length - 1] = -1;
+        for (int i = arr.length - 2; i >= 0; i--) {
+            a[i] = Math.max(a[i + 1], arr[i + 1]);
+        }
+        return a;
     }
 
     public static void main(String[] args) {
