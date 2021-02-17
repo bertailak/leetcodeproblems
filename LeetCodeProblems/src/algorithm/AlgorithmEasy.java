@@ -329,18 +329,42 @@ public class AlgorithmEasy {
             this.right = right;
         }
 
-        TreeNode insert_Recursive(TreeNode root, int key) {
-            if (root == null) {
-                root = new TreeNode(key);
-                return root;
+        void print(TreeNode node) {
+            System.out.print(node.val + " ");
+            if (node.left != null) {
+                print(node.left);
             }
-            if (key < root.val) {
-                root.left = insert_Recursive(root.left, key);
-            } else if (key > root.val) {
-                root.right = insert_Recursive(root.right, key);
+            if (node.right != null) {
+                print(node.right);
             }
+        }
+
+        TreeNode getMin() {
+            if (this.left != null) {
+                return getMin(this.left);
+            }
+            return this;
+        }
+
+        TreeNode getMin(TreeNode node) {
+            if (node.left != null) {
+                return getMin(node.left);
+            }
+            return node;
+        }
+    }
+
+    public static TreeNode insert_Recursive(TreeNode root, int key) {
+        if (root == null) {
+            root = new TreeNode(key);
             return root;
         }
+        if (key < root.val) {
+            root.left = insert_Recursive(root.left, key);
+        } else if (key > root.val) {
+            root.right = insert_Recursive(root.right, key);
+        }
+        return root;
     }
 
     public static int rangeSumBST(TreeNode root, int low, int high) {
@@ -959,6 +983,34 @@ public class AlgorithmEasy {
             a[i] = Math.max(a[i + 1], arr[i + 1]);
         }
         return a;
+    }
+
+    public static TreeNode increasingBST(TreeNode root) {
+        return increasingBST(root, null);
+    }
+
+    public static TreeNode increasingBST(TreeNode root, TreeNode res) {
+//        int[] n = new int[]{5, 1, 7};
+//        TreeNode node = new TreeNode(n[0]);
+//        for (int i = 1; i < n.length; i++) {
+//             node = insert_Recursive(node, n[i]);
+//        }
+//        TreeNode t = increasingBST(node);
+//        t.print(t);
+//        System.out.println();
+
+        if (root.left != null) {
+            res = increasingBST(root.left, res);
+        }
+        if (res == null) {
+            res = new TreeNode(root.val);
+        } else {
+            res = insert_Recursive(res, root.val);
+        }
+        if (root.right != null) {
+            res = increasingBST(root.right, res);
+        }
+        return res;
     }
 
     public static void main(String[] args) {
