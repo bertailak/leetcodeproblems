@@ -1013,6 +1013,32 @@ public class AlgorithmEasy {
         return res;
     }
 
+    public static String longestCommonPrefix(String[] strs) {
+//        System.out.println(longestCommonPrefix(new String[]{"flower", "flower", "flower", "flower"}));
+
+        String prefix = "";
+        boolean b = false;
+        int j = 0;
+        while (strs.length > 0 && j < strs[0].length()) {
+            char c = strs[0].charAt(j);
+            for (int i = 1; i < strs.length; i++) {
+                if (j >= strs[i].length() || c != strs[i].charAt(j)) {
+                    b = true;
+                    break;
+                }
+            }
+            if (b) {
+                break;
+            }
+            j++;
+        }
+        if (j > 0) {
+//            j = j > strs[0].length() ? strs[0].length() - 1 : j;
+            prefix = strs[0].substring(0, j);
+        }
+        return prefix;
+    }
+
     public static void main(String[] args) {
     }
 }
