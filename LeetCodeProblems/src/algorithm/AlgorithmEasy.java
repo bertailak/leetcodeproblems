@@ -1162,6 +1162,23 @@ public class AlgorithmEasy {
         return res;
     }
 
+    public static int maxDepth(TreeNode root) {
+//        int[] t1 = new int[]{3, 9, 20, 15, 7};
+//        TreeNode r1 = new TreeNode(t1[0]);
+//        for (int i = 1; i < t1.length; i++) {
+//            r1 = insert_Recursive(r1, t1[i]);
+//        }
+//        System.out.println(maxDepth(r1));
+
+        if (root == null) {
+            return 0;
+        }
+        int left = 1 + maxDepth(root.left);
+        int right = 1 + maxDepth(root.right);
+
+        return left > right ? left : right;
+    }
+
     public static void main(String[] args) {
     }
 }
