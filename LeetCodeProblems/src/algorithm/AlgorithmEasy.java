@@ -1039,6 +1039,30 @@ public class AlgorithmEasy {
         return prefix;
     }
 
+    public static TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+//        int[] t1 = new int[]{1, 3, 2, 5};
+//        TreeNode r1 = new TreeNode(t1[0]);
+//        int[] t2 = new int[]{2, 1, 3, 4, 7};
+//        TreeNode r2 = new TreeNode(t2[0]);
+//        for (int i = 1; i < t1.length; i++) {
+//            r1 = insert_Recursive(r1, t1[i]);
+//        }
+//        for (int i = 1; i < t2.length; i++) {
+//            r2 = insert_Recursive(r2, t2[i]);
+//        }
+//        TreeNode r3 = mergeTrees(r1, r2);
+//        r3.print(r3);
+
+        if (root1 == null) {
+            root1 = root2;
+        } else if (root1 != null && root2 != null) {
+            root1.val = root1.val + root2.val;
+            root1.left = mergeTrees(root1.left, root2.left);
+            root1.right = mergeTrees(root1.right, root2.right);
+        }
+        return root1;
+    }
+
     public static void main(String[] args) {
     }
 }
