@@ -13,6 +13,84 @@ import java.util.*;
  */
 public class AlgorithmEasy {
 
+    public static TreeNode insert_Recursive(TreeNode root, int key) {
+        if (root == null) {
+            root = new TreeNode(key);
+            return root;
+        }
+        if (key < root.val) {
+            root.left = insert_Recursive(root.left, key);
+        } else if (key > root.val) {
+            root.right = insert_Recursive(root.right, key);
+        }
+        return root;
+    }
+
+    public static class TreeNode {
+
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+
+        void print(TreeNode node) {
+            if (node == null) {
+            } else {
+                System.out.print(node.val + " ");
+                if (node.left != null) {
+                    print(node.left);
+                }
+                if (node.right != null) {
+                    print(node.right);
+                }
+            }
+        }
+
+        TreeNode getMin() {
+            if (this.left != null) {
+                return getMin(this.left);
+            }
+            return this;
+        }
+
+        TreeNode getMin(TreeNode node) {
+            if (node.left != null) {
+                return getMin(node.left);
+            }
+            return node;
+        }
+    }
+
+    public static class Node {
+
+        public int val;
+        public List<Node> children;
+
+        public Node() {
+        }
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    };
+
     public static int[] runningSum(int[] nums) {
 //        int[] n = {1, 2, 3};
 //        n = runningSum(n);
@@ -308,63 +386,6 @@ public class AlgorithmEasy {
             }
         }
         return max;
-    }
-
-    public static class TreeNode {
-
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-
-        void print(TreeNode node) {
-            System.out.print(node.val + " ");
-            if (node.left != null) {
-                print(node.left);
-            }
-            if (node.right != null) {
-                print(node.right);
-            }
-        }
-
-        TreeNode getMin() {
-            if (this.left != null) {
-                return getMin(this.left);
-            }
-            return this;
-        }
-
-        TreeNode getMin(TreeNode node) {
-            if (node.left != null) {
-                return getMin(node.left);
-            }
-            return node;
-        }
-    }
-
-    public static TreeNode insert_Recursive(TreeNode root, int key) {
-        if (root == null) {
-            root = new TreeNode(key);
-            return root;
-        }
-        if (key < root.val) {
-            root.left = insert_Recursive(root.left, key);
-        } else if (key > root.val) {
-            root.right = insert_Recursive(root.right, key);
-        }
-        return root;
     }
 
     public static int rangeSumBST(TreeNode root, int low, int high) {
@@ -1061,6 +1082,84 @@ public class AlgorithmEasy {
             root1.right = mergeTrees(root1.right, root2.right);
         }
         return root1;
+    }
+
+    public static TreeNode searchBST(TreeNode root, int val) {
+//        int[] t1 = new int[]{4, 2, 7, 1, 3};
+//        TreeNode r1 = new TreeNode(t1[0]);
+//        for (int i = 1; i < t1.length; i++) {
+//            r1 = insert_Recursive(r1, t1[i]);
+//        }
+//        TreeNode r2 = searchBST(r1, 5);
+//        r1.print(r2);
+
+        TreeNode res = null;
+
+        if (root.val == val) {
+            res = root;
+        } else if (root.val > val && root.left != null) {
+            res = searchBST(root.left, val);
+        } else if (root.val < val && root.right != null) {
+            res = searchBST(root.right, val);
+        }
+        return res;
+    }
+
+    public static List<Integer> postorder(Node root) {
+        List<Integer> res = new ArrayList<>();
+        if (root != null) {
+            for (int i = 0; i < root.children.size(); i++) {
+                res.addAll(postorder(root.children.get(i)));
+            }
+
+            res.add(root.val);
+        }
+        return res;
+    }
+
+    public static List<Integer> preorder(Node root) {
+        List<Integer> res = new ArrayList<>();
+        if (root != null) {
+            res.add(root.val);
+            for (int i = 0; i < root.children.size(); i++) {
+                res.addAll(preorder(root.children.get(i)));
+            }
+        }
+        return res;
+    }
+
+    public static int sumRootToLeaf(TreeNode root) {
+        int res = 0;
+
+        if (root != null) {
+            res = sumRootToLeaf(root, new StringBuilder());
+        }
+
+        return res;
+    }
+
+    public static int sumRootToLeaf(TreeNode root, StringBuilder sb) {
+//        int[] t1 = new int[]{1, 0, 1, 0, 1, 0, 1};
+//        TreeNode r1 = new TreeNode(t1[0]);
+//        for (int i = 1; i < t1.length; i++) {
+//            r1 = insert_Recursive(r1, t1[i]);
+//        }
+//        int r2 = sumRootToLeaf(r1);
+//        System.out.println(r2);
+
+        int res = 0;
+        sb.append(root.val);
+        if (root.left == null && root.right == null) {
+            res = Integer.parseInt(sb.toString(), 2);
+        }
+        if (root.left != null) {
+            res += sumRootToLeaf(root.left, sb);
+        }
+        if (root.right != null) {
+            res += sumRootToLeaf(root.right, sb);
+        }
+        sb.setLength(sb.length() - 1);
+        return res;
     }
 
     public static void main(String[] args) {
