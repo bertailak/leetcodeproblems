@@ -1150,6 +1150,8 @@ public class AlgorithmEasy {
     }
 
     public static boolean isUnivalTree(TreeNode root) {
+//        https://leetcode.com/problems/univalued-binary-tree/
+
         boolean res = true;
 
         if (root.left != null) {
@@ -1168,9 +1170,24 @@ public class AlgorithmEasy {
         return res;
     }
 
+    public static TreeNode invertTree(TreeNode root) {
+//        https://leetcode.com/problems/invert-binary-tree/
+
+        if (root != null) {
+            TreeNode t = root.left;
+            root.left = root.right;
+            root.right = t;
+            root.left = invertTree(root.left);
+            root.right = invertTree(root.right);
+        }
+
+        return root;
+    }
+
     public static void main(String[] args) {
-        Object[] obj = new Object[]{1, 1, 1, 1, 1, null, 1};
+        Object[] obj = new Object[]{4, 2, 7, 1, 3, 6, 9};
         TreeNode t = insertByOrder(0, obj);
-        print(t);
+        TreeNode res = invertTree(t);
+        print(res);
     }
 }
