@@ -13,17 +13,39 @@ import java.util.*;
  */
 public class AlgorithmEasy {
 
-    public static TreeNode insert_Recursive(TreeNode root, int key) {
+    public static TreeNode insert_Recursive(TreeNode root, Object key) {
         if (root == null) {
-            root = new TreeNode(key);
+            root = new TreeNode((int) key);
             return root;
         }
-        if (key < root.val) {
+        if ((int) key < root.val) {
             root.left = insert_Recursive(root.left, key);
-        } else if (key > root.val) {
+        } else if ((int) key > (int) root.val) {
             root.right = insert_Recursive(root.right, key);
         }
         return root;
+    }
+
+    public static TreeNode insertByOrder(int index, Object[] keys) {
+        if (index < keys.length && keys[index] != null) {
+            TreeNode root = new TreeNode((int) keys[index]);
+            root.left = insertByOrder(index * 2 + 1, keys);
+            root.right = insertByOrder(index * 2 + 2, keys);
+            return root;
+        }
+        return null;
+    }
+
+    public static void print(TreeNode node) {
+        if (node == null) {
+            System.out.print("- ");
+        } else {
+            System.out.print(node.val + " ");
+            if (node.left != null || node.right != null) {
+                print(node.left);
+                print(node.right);
+            }
+        }
     }
 
     public static class TreeNode {
@@ -43,19 +65,6 @@ public class AlgorithmEasy {
             this.val = val;
             this.left = left;
             this.right = right;
-        }
-
-        void print(TreeNode node) {
-            if (node == null) {
-            } else {
-                System.out.print(node.val + " ");
-                if (node.left != null) {
-                    print(node.left);
-                }
-                if (node.right != null) {
-                    print(node.right);
-                }
-            }
         }
 
         TreeNode getMin() {
@@ -389,13 +398,6 @@ public class AlgorithmEasy {
     }
 
     public static int rangeSumBST(TreeNode root, int low, int high) {
-//        int[] n = new int[]{10, 5, 15, 3, 7, 13, 18, 1, 6};
-//        TreeNode node = new TreeNode(n[0]);
-//        for (int i = 1; i < n.length; i++) {
-//            node.insert_Recursive(node, n[i]);
-//        }
-//        System.out.println(rangeSumBST(node, 6, 10));
-
         if (root == null) {
             return 0;
         } else {
@@ -1011,15 +1013,6 @@ public class AlgorithmEasy {
     }
 
     public static TreeNode increasingBST(TreeNode root, TreeNode res) {
-//        int[] n = new int[]{5, 1, 7};
-//        TreeNode node = new TreeNode(n[0]);
-//        for (int i = 1; i < n.length; i++) {
-//             node = insert_Recursive(node, n[i]);
-//        }
-//        TreeNode t = increasingBST(node);
-//        t.print(t);
-//        System.out.println();
-
         if (root.left != null) {
             res = increasingBST(root.left, res);
         }
@@ -1061,19 +1054,6 @@ public class AlgorithmEasy {
     }
 
     public static TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
-//        int[] t1 = new int[]{1, 3, 2, 5};
-//        TreeNode r1 = new TreeNode(t1[0]);
-//        int[] t2 = new int[]{2, 1, 3, 4, 7};
-//        TreeNode r2 = new TreeNode(t2[0]);
-//        for (int i = 1; i < t1.length; i++) {
-//            r1 = insert_Recursive(r1, t1[i]);
-//        }
-//        for (int i = 1; i < t2.length; i++) {
-//            r2 = insert_Recursive(r2, t2[i]);
-//        }
-//        TreeNode r3 = mergeTrees(r1, r2);
-//        r3.print(r3);
-
         if (root1 == null) {
             root1 = root2;
         } else if (root1 != null && root2 != null) {
@@ -1085,14 +1065,6 @@ public class AlgorithmEasy {
     }
 
     public static TreeNode searchBST(TreeNode root, int val) {
-//        int[] t1 = new int[]{4, 2, 7, 1, 3};
-//        TreeNode r1 = new TreeNode(t1[0]);
-//        for (int i = 1; i < t1.length; i++) {
-//            r1 = insert_Recursive(r1, t1[i]);
-//        }
-//        TreeNode r2 = searchBST(r1, 5);
-//        r1.print(r2);
-
         TreeNode res = null;
 
         if (root.val == val) {
@@ -1139,14 +1111,6 @@ public class AlgorithmEasy {
     }
 
     public static int sumRootToLeaf(TreeNode root, StringBuilder sb) {
-//        int[] t1 = new int[]{1, 0, 1, 0, 1, 0, 1};
-//        TreeNode r1 = new TreeNode(t1[0]);
-//        for (int i = 1; i < t1.length; i++) {
-//            r1 = insert_Recursive(r1, t1[i]);
-//        }
-//        int r2 = sumRootToLeaf(r1);
-//        System.out.println(r2);
-
         int res = 0;
         sb.append(root.val);
         if (root.left == null && root.right == null) {
@@ -1163,13 +1127,6 @@ public class AlgorithmEasy {
     }
 
     public static int maxDepth(TreeNode root) {
-//        int[] t1 = new int[]{3, 9, 20, 15, 7};
-//        TreeNode r1 = new TreeNode(t1[0]);
-//        for (int i = 1; i < t1.length; i++) {
-//            r1 = insert_Recursive(r1, t1[i]);
-//        }
-//        System.out.println(maxDepth(r1));
-
         if (root == null) {
             return 0;
         }
@@ -1179,6 +1136,41 @@ public class AlgorithmEasy {
         return left > right ? left : right;
     }
 
+    public static int maxDepth(Node root) {
+        int depth = 0;
+
+        if (root != null) {
+            depth = 1;
+            for (Node node : root.children) {
+                int dep = 1 + maxDepth(node);
+                depth = Math.max(dep, depth);
+            }
+        }
+        return depth;
+    }
+
+    public static boolean isUnivalTree(TreeNode root) {
+        boolean res = true;
+
+        if (root.left != null) {
+            res = res && root.val == root.left.val;
+            if (res) {
+                res = isUnivalTree(root.left);
+            }
+        }
+        if (res && root.right != null) {
+            res = res && root.val == root.right.val;
+            if (res) {
+                res = isUnivalTree(root.right);
+            }
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
+        Object[] obj = new Object[]{1, 1, 1, 1, 1, null, 1};
+        TreeNode t = insertByOrder(0, obj);
+        print(t);
     }
 }
