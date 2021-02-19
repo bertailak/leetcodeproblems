@@ -1050,6 +1050,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] finalPrices(int[] prices) {
+//        https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
 //        int[] a = finalPrices(new int[]{10, 1, 1, 6});
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i] + " ");
@@ -1071,6 +1072,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] sortArrayByParity(int[] A) {
+//        https://leetcode.com/problems/sort-array-by-parity/
 //        int[] a = sortArrayByParity(new int[]{3, 1, 2, 4});
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i] + " ");
@@ -1092,6 +1094,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] replaceElements(int[] arr) {
+//        https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
 //        int[] a = replaceElements(new int[]{17, 18, 5, 4, 6, 1});
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i] + " ");
@@ -1106,10 +1109,12 @@ public class AlgorithmEasy {
     }
 
     public static TreeNode increasingBST(TreeNode root) {
+//        https://leetcode.com/problems/increasing-order-search-tree/
         return increasingBST(root, null);
     }
 
     public static TreeNode increasingBST(TreeNode root, TreeNode res) {
+//        https://leetcode.com/problems/increasing-order-search-tree/
         if (root.left != null) {
             res = increasingBST(root.left, res);
         }
@@ -1125,6 +1130,7 @@ public class AlgorithmEasy {
     }
 
     public static String longestCommonPrefix(String[] strs) {
+//        https://leetcode.com/problems/longest-common-prefix/
 //        System.out.println(longestCommonPrefix(new String[]{"flower", "flower", "flower", "flower"}));
 
         String prefix = "";
@@ -1151,6 +1157,7 @@ public class AlgorithmEasy {
     }
 
     public static TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+//        https://leetcode.com/problems/merge-two-binary-trees/
         if (root1 == null) {
             root1 = root2;
         } else if (root1 != null && root2 != null) {
@@ -1162,6 +1169,7 @@ public class AlgorithmEasy {
     }
 
     public static TreeNode searchBST(TreeNode root, int val) {
+//        https://leetcode.com/problems/search-in-a-binary-search-tree/
         TreeNode res = null;
 
         if (root.val == val) {
@@ -1175,6 +1183,7 @@ public class AlgorithmEasy {
     }
 
     public static List<Integer> postorder(Node root) {
+//        https://leetcode.com/problems/n-ary-tree-postorder-traversal/
         List<Integer> res = new ArrayList<>();
         if (root != null) {
             for (int i = 0; i < root.children.size(); i++) {
@@ -1187,6 +1196,7 @@ public class AlgorithmEasy {
     }
 
     public static List<Integer> preorder(Node root) {
+//        https://leetcode.com/problems/n-ary-tree-preorder-traversal/
         List<Integer> res = new ArrayList<>();
         if (root != null) {
             res.add(root.val);
@@ -1198,6 +1208,7 @@ public class AlgorithmEasy {
     }
 
     public static int sumRootToLeaf(TreeNode root) {
+//        https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
         int res = 0;
 
         if (root != null) {
@@ -1208,6 +1219,8 @@ public class AlgorithmEasy {
     }
 
     public static int sumRootToLeaf(TreeNode root, StringBuilder sb) {
+//        https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+        
         int res = 0;
         sb.append(root.val);
         if (root.left == null && root.right == null) {
@@ -1224,6 +1237,7 @@ public class AlgorithmEasy {
     }
 
     public static int maxDepth(TreeNode root) {
+//        https://leetcode.com/problems/maximum-depth-of-binary-tree/
         if (root == null) {
             return 0;
         }
@@ -1234,6 +1248,8 @@ public class AlgorithmEasy {
     }
 
     public static int maxDepth(Node root) {
+//        https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
+        
         int depth = 0;
 
         if (root != null) {
