@@ -1,15 +1,11 @@
 package algorithm;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author s_bertailak
+ * @author @bertailak
  */
 public class AlgorithmEasy {
 
@@ -100,7 +96,58 @@ public class AlgorithmEasy {
         }
     };
 
+    public static int getSum(int n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n = n / 10;
+        }
+        return sum;
+    }
+
+    public static int countBalls(int lowLimit, int highLimit) {
+//        https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
+
+        int max = 0;
+        int[] sums = new int[100000];
+        for (int i = lowLimit; i <= highLimit; i++) {
+            sums[getSum(i) - 1]++;
+            if (max < sums[getSum(i) - 1]) {
+                max = sums[getSum(i) - 1];
+            }
+        }
+        return max;
+    }
+
+    public static boolean check(int[] nums) {
+//        https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
+
+        boolean res = false;
+
+        List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
+
+        for (int i = 0; i < nums.length; i++) {
+
+            List<Integer> list2 = list.subList(i, nums.length);
+            list2.addAll(list.subList(0, i));
+
+            int l = 0;
+            for (int j = 0; j < nums.length - 1; j++) {
+                if (list2.get(j) <= list2.get(j + 1)) {
+                    l++;
+                }
+            }
+            if (l == nums.length - 1) {
+                res = true;
+                break;
+            }
+        }
+
+        return res;
+    }
+
     public static int[] runningSum(int[] nums) {
+//        https://leetcode.com/problems/running-sum-of-1d-array/
 //        int[] n = {1, 2, 3};
 //        n = runningSum(n);
 //        for (int i = 0; i < n.length; i++) {
@@ -116,12 +163,14 @@ public class AlgorithmEasy {
     }
 
     public static String defangIPaddr(String address) {
-        //        System.out.println(defangIPaddr("1.1.1.1"));
+//        https://leetcode.com/problems/defanging-an-ip-address/
+//        System.out.println(defangIPaddr("1.1.1.1"));
 
         return address.replace(".", "[.]");
     }
 
     public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+//        https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
 //        List<Boolean> b = kidsWithCandies(new int[]{2, 3, 5, 1, 3}, 3);
 //        for (int i = 0; i < b.size(); i++) {
 //            System.out.print(b.get(i) + " ");
@@ -143,6 +192,7 @@ public class AlgorithmEasy {
     }
 
     public static int maximumWealth(int[][] accounts) {
+//        https://leetcode.com/problems/richest-customer-wealth/
 //        int[][] accounts = {{1, 2, 3}, {3, 2, 1}};
 //        System.out.println(maximumWealth(accounts));
 
@@ -158,6 +208,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] shuffle(int[] nums, int n) {
+//        https://leetcode.com/problems/shuffle-the-array/
 //        int[] a = shuffle(new int[]{2, 5, 1, 3, 4, 7}, 3);
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i] + " ");
@@ -172,6 +223,7 @@ public class AlgorithmEasy {
     }
 
     public static int numIdenticalPairs(int[] nums) {
+//        https://leetcode.com/problems/number-of-good-pairs/
 //        System.out.println(numIdenticalPairs(new int[]{1,2,3}));
 
         int good = 0;
@@ -186,6 +238,7 @@ public class AlgorithmEasy {
     }
 
     public static int numJewelsInStones(String jewels, String stones) {
+//        https://leetcode.com/problems/jewels-and-stones/
 //        System.out.println(numJewelsInStones("aA", "aAAbbbb"));
 
         int count = 0;
@@ -198,6 +251,7 @@ public class AlgorithmEasy {
     }
 
     class ParkingSystem {
+//        https://leetcode.com/problems/design-parking-system/
 
         int[] a;
 
@@ -216,6 +270,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] smallerNumbersThanCurrent(int[] nums) {
+//        https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
 //        int[] res = smallerNumbersThanCurrent(new int[]{1, 3, 2, 3});
 //        for (int i = 0; i < res.length; i++) {
 //            System.out.print(res[i] + " ");
@@ -236,11 +291,13 @@ public class AlgorithmEasy {
     }
 
     public static String interpret(String command) {
+//        https://leetcode.com/problems/goal-parser-interpretation/
 //        System.out.println(interpret("G()(al)"));
         return command.replace("()", "o").replace("(al)", "al");
     }
 
     public static int[] decode(int[] encoded, int first) {
+//        https://leetcode.com/problems/decode-xored-array/
 //        decode(new int[]{1, 2, 3}, 1);
 
         int[] arr = new int[encoded.length + 1];
@@ -252,6 +309,7 @@ public class AlgorithmEasy {
     }
 
     public static String restoreString(String s, int[] indices) {
+//        https://leetcode.com/problems/shuffle-string/
 //        System.out.println(restoreString("codeleet", new int[]{4, 5, 6, 7, 0, 2, 1, 3}));
 
         char[] c = new char[indices.length];
@@ -262,6 +320,7 @@ public class AlgorithmEasy {
     }
 
     public static int numberOfSteps(int num) {
+//        https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/
 //        System.out.println(numberOfSteps(14));
 
         int step = 0;
@@ -279,6 +338,7 @@ public class AlgorithmEasy {
     }
 
     public static int subtractProductAndSum(int n) {
+//        https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
 //        System.out.println(subtractProductAndSum(234));
 
         int product = 1;
@@ -293,6 +353,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] decompressRLElist(int[] nums) {
+//        https://leetcode.com/problems/decompress-run-length-encoded-list/
 //        int[] a = decompressRLElist(new int[]{1, 2, 3, 4});
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i] + " ");
@@ -308,6 +369,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] createTargetArray(int[] nums, int[] index) {
+//        https://leetcode.com/problems/create-target-array-in-the-given-order/
 //        int[] a = createTargetArray(new int[]{1, 2, 3, 4, 0}, new int[]{0, 1, 2, 3, 0});
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i] + " ");
@@ -321,6 +383,7 @@ public class AlgorithmEasy {
     }
 
     public static int xorOperation(int n, int start) {
+//        https://leetcode.com/problems/xor-operation-in-an-array/
 //        System.out.println(xorOperation(10, 5));
 
         int res = 0;
@@ -331,6 +394,7 @@ public class AlgorithmEasy {
     }
 
     public static int balancedStringSplit(String s) {
+//        https://leetcode.com/problems/split-a-string-in-balanced-strings/
 //        System.out.println(balancedStringSplit("RLRRRLLRLL"));
 
         int count = 0;
@@ -355,6 +419,7 @@ public class AlgorithmEasy {
     }
 
     public static int countConsistentStrings(String allowed, String[] words) {
+//        https://leetcode.com/problems/count-the-number-of-consistent-strings/
 //        System.out.println(countConsistentStrings("cad", new String[]{"cc", "acd", "b", "ba", "bac", "bad", "ac", "d"}));
 
         int count = 0;
@@ -371,6 +436,7 @@ public class AlgorithmEasy {
     }
 
     public static boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+//        https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/
 //        System.out.println(arrayStringsAreEqual(new String[]{"ac", "c"}, new String[]{"a", "bc"}));
 
         if (String.join("", word1).equals(String.join("", word2))) {
@@ -380,6 +446,7 @@ public class AlgorithmEasy {
     }
 
     public static int maxDepth(String s) {
+//        https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
 //        System.out.println(maxDepth("1+(2*3)/(2-1)"));
 
         int depth = 0;
@@ -398,6 +465,7 @@ public class AlgorithmEasy {
     }
 
     public static int rangeSumBST(TreeNode root, int low, int high) {
+//        https://leetcode.com/problems/range-sum-of-bst/
         if (root == null) {
             return 0;
         } else {
@@ -408,12 +476,14 @@ public class AlgorithmEasy {
     }
 
     public static int numberOfMatches(int n) {
+//        https://leetcode.com/problems/count-of-matches-in-tournament/
 //        System.out.println(numberOfMatches(7));
 
         return --n;
     }
 
     static class OrderedStream {
+//        https://leetcode.com/problems/design-an-ordered-stream/
 //        OrderedStream obj = new OrderedStream(5);
 //        int[] ind = new int[]{3, 1, 2, 5, 4};
 //        String[] val = new String[]{"ccccc", "aaaaa", "bbbbb", "eeeee", "ddddd"};
@@ -451,6 +521,7 @@ public class AlgorithmEasy {
     }
 
     public static int sumOddLengthSubarrays(int[] arr) {
+//        https://leetcode.com/problems/sum-of-all-odd-length-subarrays/
 //        System.out.println(sumOddLengthSubarrays(new int[]{1, 2}));
 
         int total = 0;
@@ -469,6 +540,7 @@ public class AlgorithmEasy {
     }
 
     public static int largestAltitude(int[] gain) {
+//        https://leetcode.com/problems/find-the-highest-altitude/
 //        System.out.println(largestAltitude(new int[]{-4, -3, -2, -1, 4, 3, 2}));
 
         int max = 0;
@@ -485,6 +557,7 @@ public class AlgorithmEasy {
     }
 
     public static int countGoodTriplets(int[] arr, int a, int b, int c) {
+//        https://leetcode.com/problems/count-good-triplets/
 //        System.out.println(countGoodTriplets(new int[]{1, 1, 2, 2, 3}, 0, 0, 1));
 
         int count = 0;
@@ -503,6 +576,7 @@ public class AlgorithmEasy {
     }
 
     public static String toLowerCase(String str) {
+//        https://leetcode.com/problems/to-lower-case/
 //        System.out.println(toLowerCase("al&phaBET"));
 
         StringBuilder s = new StringBuilder();
@@ -517,6 +591,7 @@ public class AlgorithmEasy {
     }
 
     public static int minTimeToVisitAllPoints(int[][] points) {
+//        https://leetcode.com/problems/minimum-time-visiting-all-points/
 //        System.out.println(minTimeToVisitAllPoints(new int[][]{{559, 511}, {932, 618}, {-623, -443}, {431, 91}, {838, -127}, {773, -917}, {-500, -910}, {830, -417}, {-870, 73}, {-864, -600}, {450, 535}, {-479, -370}, {856, 573}, {-549, 369}, {529, -462}, {-839, -856}, {-515, -447}, {652, 197}, {-83, 345}, {-69, 423}, {310, -737}, {78, -201}, {443, 958}, {-311, 988}, {-477, 30}, {-376, -153}, {-272, 451}, {322, -125}, {-114, -214}, {495, 33}, {371, -533}, {-393, -224}, {-405, -633}, {-693, 297}, {504, 210}, {-427, -231}, {315, 27}, {991, 322}, {811, -746}, {252, 373}, {-737, -867}, {-137, 130}, {507, 380}, {100, -638}, {-296, 700}, {341, 671}, {-944, 982}, {937, -440}, {40, -929}, {-334, 60}, {-722, -92}, {-35, -852}, {25, -495}, {185, 671}, {149, -452}}));
 //        System.out.println(minTimeToVisitAllPoints(new int[][]{{3, 2}, {-2, 2}}));
 //        System.out.println(minTimeToVisitAllPoints(new int[][]{{1, 1}, {3, 4}, {-1, 0}}));
@@ -544,6 +619,7 @@ public class AlgorithmEasy {
     }
 
     public static int findNumbers(int[] nums) {
+//        https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
 //        System.out.println(findNumbers(new int[]{555, 901, 482, 1771}));
         int count = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -560,6 +636,7 @@ public class AlgorithmEasy {
     }
 
     public static String removeOuterParentheses(String S) {
+//        https://leetcode.com/problems/remove-outermost-parentheses/
 //        System.out.println(removeOuterParentheses("(()())()(()(()))"));
         String res = "";
         int count = 0;
@@ -580,6 +657,7 @@ public class AlgorithmEasy {
     }
 
     public static int oddCells(int n, int m, int[][] indices) {
+//        https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
 //        System.out.println(oddCells(2, 2, new int[][]{{0, 0}, {1, 1}}));
 
         int count = 0;
@@ -606,6 +684,7 @@ public class AlgorithmEasy {
     }
 
     public static int uniqueMorseRepresentations(String[] words) {
+//        https://leetcode.com/problems/unique-morse-code-words/
 //        System.out.println(uniqueMorseRepresentations(new String[]{"gin", "zen", "gig", "msg"}));
         String[] morse = new String[]{".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
         HashSet<String> codes = new HashSet<>();
@@ -1172,6 +1251,10 @@ public class AlgorithmEasy {
 
     public static TreeNode invertTree(TreeNode root) {
 //        https://leetcode.com/problems/invert-binary-tree/
+//        Object[] obj = new Object[]{4, 2, 7, 1, 3, 6, 9};
+//        TreeNode t = insertByOrder(0, obj);
+//        TreeNode res = invertTree(t);
+//        print(res);
 
         if (root != null) {
             TreeNode t = root.left;
@@ -1185,9 +1268,5 @@ public class AlgorithmEasy {
     }
 
     public static void main(String[] args) {
-        Object[] obj = new Object[]{4, 2, 7, 1, 3, 6, 9};
-        TreeNode t = insertByOrder(0, obj);
-        TreeNode res = invertTree(t);
-        print(res);
     }
 }
