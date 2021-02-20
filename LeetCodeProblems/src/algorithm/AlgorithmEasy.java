@@ -699,7 +699,9 @@ public class AlgorithmEasy {
     }
 
     public static int diagonalSum(int[][] mat) {
+//        https://leetcode.com/problems/matrix-diagonal-sum/
 //        System.out.println(diagonalSum(new int[][]{{1, 1, 1}, {1, 2, 1}, {1, 1, 1}}));
+
         int sum = 0;
         for (int i = 0; i < mat.length; i++) {
             sum += mat[i][i];
@@ -711,6 +713,7 @@ public class AlgorithmEasy {
     }
 
     public static int[][] flipAndInvertImage(int[][] A) {
+//        https://leetcode.com/problems/flipping-an-image/
 //        int[][] a = flipAndInvertImage(new int[][]{{1, 1, 1}, {1, 1, 1}, {1, 1, 1}});
 //        for (int i = 0; i < a.length; i++) {
 //            for (int j = 0; j < a.length; j++) {
@@ -733,6 +736,7 @@ public class AlgorithmEasy {
     }
 
     public static int maximum69Number(int num) {
+//        https://leetcode.com/problems/maximum-69-number/
 //        System.out.println(maximum69Number(9669));
 
         char[] c = (num + "").toCharArray();
@@ -746,6 +750,7 @@ public class AlgorithmEasy {
     }
 
     public static int sumOfUnique(int[] nums) {
+//        https://leetcode.com/problems/sum-of-unique-elements/
 //        System.out.println(sumOfUnique(new int[]{1,2,3,4,5}));
 
         int sum = 0;
@@ -766,6 +771,7 @@ public class AlgorithmEasy {
     }
 
     public static int countGoodRectangles(int[][] rectangles) {
+//        https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/
 //        System.out.println(countGoodRectangles(new int[][]{{2,3},{3,7},{4,3},{3,7}}));
 
         int count = 0;
@@ -787,6 +793,7 @@ public class AlgorithmEasy {
     }
 
     public static boolean halvesAreAlike(String s) {
+//        https://leetcode.com/problems/determine-if-string-halves-are-alike/
 //        System.out.println(halvesAreAlike("AbCdEfGh"));
 
         List<Character> l = new ArrayList<>();
@@ -817,7 +824,9 @@ public class AlgorithmEasy {
     }
 
     public static int minDeletionSize(String[] strs) {
+//        https://leetcode.com/problems/delete-columns-to-make-sorted/
 //        System.out.println(minDeletionSize(new String[]{"zyx","wvu","tsr"}));
+
         int count = 0;
         for (int i = 0; i < strs[0].length(); i++) {
             for (int j = 0; j < strs.length - 1; j++) {
@@ -831,6 +840,7 @@ public class AlgorithmEasy {
     }
 
     public static String freqAlphabets(String s) {
+//        https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/
 //        System.out.println(freqAlphabets("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#"));
 
         HashMap<String, String> dict = new HashMap<>();
@@ -872,6 +882,7 @@ public class AlgorithmEasy {
     }
 
     public static int busyStudent(int[] startTime, int[] endTime, int queryTime) {
+//        https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/
 //        System.out.println(busyStudent(new int[]{1, 2, 3}, new int[]{3, 2, 7}, 4));
 
         int count = 0;
@@ -884,6 +895,7 @@ public class AlgorithmEasy {
     }
 
     public static int maxProduct(int[] nums) {
+//        https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
 //        System.out.println(maxProduct(new int[]{10, 2, 5, 2}));
 
         int max = (nums[0] - 1) * (nums[1] - 1);
@@ -897,6 +909,7 @@ public class AlgorithmEasy {
     }
 
     public static String destCity(List<List<String>> paths) {
+//        https://leetcode.com/problems/destination-city/
 //        List<String> d1 = new ArrayList<>();
 //        d1.add("London");
 //        d1.add("New York");
@@ -939,6 +952,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] sumZero(int n) {
+//        https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
 //        int[] a = sumZero(4);
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i] + " ");
@@ -957,6 +971,7 @@ public class AlgorithmEasy {
     }
 
     public static String sortString(String s) {
+//        https://leetcode.com/problems/increasing-decreasing-string/
 //        System.out.println(sortString("aaaabbbbcccc"));
 
         int[] a = new int[26];
@@ -983,6 +998,7 @@ public class AlgorithmEasy {
     }
 
     public static String generateTheString(int n) {
+//        https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/
 //        System.out.println(generateTheString(4));
 
         StringBuilder sb = new StringBuilder();
@@ -998,6 +1014,7 @@ public class AlgorithmEasy {
     }
 
     public static int countNegatives(int[][] grid) {
+//        https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
 //        System.out.println(countNegatives(new int[][]{{4, 3, 2, -1}, {3, 2, 1, -1}, {1, 1, -1, -2}, {-1, -1, -2, -3}}));
 
         int count = 0;
@@ -1012,6 +1029,7 @@ public class AlgorithmEasy {
     }
 
     public static List<Integer> selfDividingNumbers(int left, int right) {
+//        https://leetcode.com/problems/self-dividing-numbers/
 //        List<Integer> l = selfDividingNumbers(1, 22);
 //        for (int i = 0; i < l.size(); i++) {
 //            System.out.print(l.get(i) + " ");
