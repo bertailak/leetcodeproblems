@@ -1220,7 +1220,7 @@ public class AlgorithmEasy {
 
     public static int sumRootToLeaf(TreeNode root, StringBuilder sb) {
 //        https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
-        
+
         int res = 0;
         sb.append(root.val);
         if (root.left == null && root.right == null) {
@@ -1249,7 +1249,7 @@ public class AlgorithmEasy {
 
     public static int maxDepth(Node root) {
 //        https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
-        
+
         int depth = 0;
 
         if (root != null) {
@@ -1301,6 +1301,98 @@ public class AlgorithmEasy {
         return root;
     }
 
+    static List<Double> avrgLevels = new ArrayList<>();
+    static List<Integer> countLevels = new ArrayList<>();
+
+    public static List<Double> averageOfLevels(TreeNode root) {
+//        https://leetcode.com/problems/average-of-levels-in-binary-tree/
+//        Object[] a = new Object[]{3, 9, 20, null, null, 15, 7};
+//        TreeNode t = insertByOrder(0, a);
+//        List<Double> list = averageOfLevels(t);
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.print(list.get(i) + " ");
+//        }
+
+        averageOfLevels(root, 0);
+        for (int i = 0; i < avrgLevels.size(); i++) {
+            avrgLevels.set(i, avrgLevels.get(i) / countLevels.get(i));
+        }
+
+        return avrgLevels;
+    }
+
+    public static void averageOfLevels(TreeNode root, int level) {
+        if (avrgLevels.size() < level + 1) {
+            avrgLevels.add(root.val * 1.0);
+            countLevels.add(1);
+        } else {
+            avrgLevels.set(level, avrgLevels.get(level) + root.val);
+            countLevels.set(level, countLevels.get(level) + 1);
+        }
+        if (root.left != null) {
+            averageOfLevels(root.left, level + 1);
+        }
+        if (root.right != null) {
+            averageOfLevels(root.right, level + 1);
+        }
+    }
+
+    static List<Integer> leaves1 = new ArrayList<>();
+    static List<Integer> leaves2 = new ArrayList<>();
+
+    public static boolean leafSimilar(TreeNode root1, TreeNode root2) {
+//        https://leetcode.com/problems/leaf-similar-trees/
+//        Object[] a1 = new Object[]{1,2};
+//        Object[] a2 = new Object[]{2,2};
+//        TreeNode t1 = insertByOrder(0, a1);
+//        TreeNode t2 = insertByOrder(0, a2);
+//        System.out.println(leafSimilar(t1, t2));
+
+        boolean res = true;
+        leafSimilar(root1, 1);
+        leafSimilar(root2, 2);
+
+        if (leaves1.size() == leaves2.size()) {
+            for (int i = 0; i < leaves1.size(); i++) {
+                if (leaves1.get(i) != leaves2.get(i)) {
+                    res = false;
+                }
+            }
+        } else {
+            res = false;
+        }
+        return res;
+    }
+
+    public static void leafSimilar(TreeNode root, int index) {
+        if (root.left == null && root.right == null) {
+            if (index == 1) {
+                leaves1.add(root.val);
+            } else {
+                leaves2.add(root.val);
+            }
+        } else {
+            if (root.left != null) {
+                leafSimilar(root.left, index);
+            }
+            if (root.right != null) {
+                leafSimilar(root.right, index);
+            }
+        }
+    }
+
+    public static TreeNode sortedArrayToBST(int[] nums) {
+        TreeNode node = new TreeNode(nums[nums.length / 2]);
+        for (int i = 0; i < nums.length / 2; i++) {
+            insert_Recursive(node, nums[i]);
+            if (nums.length / 2 + 1 + i < nums.length) {
+                insert_Recursive(node, nums[nums.length / 2 + 1 + i]);
+            }
+        }
+        return node;
+    }
+
     public static void main(String[] args) {
+        print(sortedArrayToBST(new int[]{0, 1, 2, 3, 4, 5}));
     }
 }
