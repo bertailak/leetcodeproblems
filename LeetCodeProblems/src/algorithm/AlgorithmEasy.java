@@ -1423,6 +1423,82 @@ public class AlgorithmEasy {
         return sb.toString();
     }
 
+    public static int getMinimumDifference(TreeNode root) {
+//        https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+//        Object[] obj = new Object[]{1, null, 3, null, null, 2};
+//        TreeNode t = insertByOrder(0, obj);
+//        System.out.println(getMinimumDifference(t));
+
+        int abs = Integer.MAX_VALUE;
+
+        List<Integer> a = new ArrayList<>();
+        Stack<TreeNode> s = new Stack<>();
+        s.push(root);
+        while (!s.isEmpty()) {
+            TreeNode node = s.pop();
+
+            int i = 0;
+            while (a.size() > 0 && i < a.size() && a.get(i) < node.val) {
+                i++;
+            }
+            a.add(i, node.val);
+
+            if (node.left != null) {
+                s.push(node.left);
+            }
+            if (node.right != null) {
+                s.push(node.right);
+            }
+        }
+
+        for (int i = 0; i < a.size() - 1; i++) {
+            int ab = Math.abs(a.get(i + 1) - a.get(i));
+            if (ab < abs) {
+                abs = ab;
+            }
+        }
+
+        return abs;
+    }
+
+    public static int minDiffInBST(TreeNode root) {
+//        https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+//        Object[] obj = new Object[]{1, null, 3, null, null, 2};
+//        TreeNode t = insertByOrder(0, obj);
+//        System.out.println(getMinimumDifference(t));
+
+        int abs = Integer.MAX_VALUE;
+
+        List<Integer> a = new ArrayList<>();
+        Stack<TreeNode> s = new Stack<>();
+        s.push(root);
+        while (!s.isEmpty()) {
+            TreeNode node = s.pop();
+
+            int i = 0;
+            while (a.size() > 0 && i < a.size() && a.get(i) < node.val) {
+                i++;
+            }
+            a.add(i, node.val);
+
+            if (node.left != null) {
+                s.push(node.left);
+            }
+            if (node.right != null) {
+                s.push(node.right);
+            }
+        }
+
+        for (int i = 0; i < a.size() - 1; i++) {
+            int ab = Math.abs(a.get(i + 1) - a.get(i));
+            if (ab < abs) {
+                abs = ab;
+            }
+        }
+
+        return abs;
+    }
+
     public static void main(String[] args) {
     }
 }
