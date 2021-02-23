@@ -1382,6 +1382,9 @@ public class AlgorithmEasy {
     }
 
     public static TreeNode sortedArrayToBST(int[] nums) {
+//        https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+//        print(sortedArrayToBST(new int[]{0, 1, 2, 3, 4, 5}));
+
         TreeNode node = new TreeNode(nums[nums.length / 2]);
         for (int i = 0; i < nums.length / 2; i++) {
             insert_Recursive(node, nums[i]);
@@ -1392,7 +1395,34 @@ public class AlgorithmEasy {
         return node;
     }
 
+    public static String tree2str(TreeNode t) {
+//        https://leetcode.com/problems/construct-string-from-binary-tree/
+//        Object[] obj = new Object[]{1, 2, 3, null, 4};
+//        TreeNode t = insertByOrder(0, obj);
+//        System.out.println(tree2str(t));
+
+        StringBuilder sb = new StringBuilder();
+
+        if (t != null) {
+            sb.append(Integer.toString(t.val));
+            if (t.left != null) {
+                sb.append('(');
+                sb.append(tree2str(t.left));
+                sb.append(')');
+            }
+            if (t.right != null) {
+                if (t.left == null) {
+                    sb.append('(');
+                    sb.append(')');
+                }
+                sb.append('(');
+                sb.append(tree2str(t.right));
+                sb.append(')');
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
-        print(sortedArrayToBST(new int[]{0, 1, 2, 3, 4, 5}));
     }
 }
