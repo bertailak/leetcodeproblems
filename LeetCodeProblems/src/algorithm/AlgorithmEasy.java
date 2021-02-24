@@ -32,16 +32,46 @@ public class AlgorithmEasy {
         return null;
     }
 
-    public static void print(TreeNode node) {
-        if (node == null) {
-            System.out.print("- ");
-        } else {
-            System.out.print(node.val + " ");
-            if (node.left != null || node.right != null) {
-                print(node.left);
-                print(node.right);
+    public static void printTree(TreeNode root) {
+        Queue<TreeNode> s = new LinkedList<>();
+        HashMap<Integer, TreeNode> m = new HashMap<>();
+
+        int ind = 0;
+        s.add(root);
+        m.put(ind++, root);
+
+        while (!s.isEmpty()) {
+            TreeNode node = s.poll();
+            if (node == null) {
+                ind += 2;
+            } else {
+                s.add(node.left);
+                s.add(node.right);
+                m.put(ind++, node.left);
+                m.put(ind++, node.right);
             }
         }
+        Object[] obj = new Object[ind];
+        for (Map.Entry<Integer, TreeNode> entry : m.entrySet()) {
+            int key = (int) entry.getKey();
+            TreeNode value = entry.getValue();
+            if (value != null) {
+                obj[key] = value.val;
+            }
+        }
+        int j = obj.length - 1;
+        while (j > 0) {
+            if (obj[j] == null) {
+                j--;
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 0; i <= j; i++) {
+            System.out.print(obj[i] + " ");
+        }
+        System.out.println();
     }
 
     public static class TreeNode {
@@ -248,6 +278,7 @@ public class AlgorithmEasy {
             }
         }
         return count;
+
     }
 
     class ParkingSystem {
@@ -480,6 +511,7 @@ public class AlgorithmEasy {
 //        System.out.println(numberOfMatches(7));
 
         return --n;
+
     }
 
     static class OrderedStream {
@@ -1288,7 +1320,6 @@ public class AlgorithmEasy {
 //        Object[] obj = new Object[]{4, 2, 7, 1, 3, 6, 9};
 //        TreeNode t = insertByOrder(0, obj);
 //        TreeNode res = invertTree(t);
-//        print(res);
 
         if (root != null) {
             TreeNode t = root.left;
@@ -1383,7 +1414,6 @@ public class AlgorithmEasy {
 
     public static TreeNode sortedArrayToBST(int[] nums) {
 //        https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
-//        print(sortedArrayToBST(new int[]{0, 1, 2, 3, 4, 5}));
 
         TreeNode node = new TreeNode(nums[nums.length / 2]);
         for (int i = 0; i < nums.length / 2; i++) {
