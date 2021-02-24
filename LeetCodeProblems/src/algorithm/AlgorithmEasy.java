@@ -1529,6 +1529,17 @@ public class AlgorithmEasy {
         return abs;
     }
 
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
+//        https://leetcode.com/problems/same-tree/
+//        System.out.println(isSameTree(insertByOrder(0, new Object[]{1, 2, 1}), insertByOrder(0, new Object[]{1, 1, 2})));
+        
+        boolean res = true;
+        if (!(p == null && q == null)) {
+            res = p != null && q != null && p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
     }
 }
