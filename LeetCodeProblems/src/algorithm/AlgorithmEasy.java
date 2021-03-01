@@ -126,6 +126,24 @@ public class AlgorithmEasy {
         }
     };
 
+    public static class ListNode {
+
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
     public static int getSum(int n) {
         int sum = 0;
         while (n > 0) {
@@ -1562,6 +1580,36 @@ public class AlgorithmEasy {
         return count;
     }
 
+    public static int getDecimalValue(ListNode head) {
+//        https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+//        ListNode node2 = new ListNode(1);
+//        ListNode node1 = new ListNode(0, node2);
+//        ListNode node0 = new ListNode(1, node1);
+//        System.out.println(getDecimalValue(node0));
+        
+        int res = 0;
+        int pow = 1;
+
+        Stack<Integer> st = new Stack<>();
+        while (head != null) {
+            st.add(head.val);
+            head = head.next;
+        }
+        while (!st.isEmpty()) {
+            int val = st.pop();
+            res += pow * val;
+            pow *= 2;
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
+
+        ListNode node2 = new ListNode(1);
+        ListNode node1 = new ListNode(0, node2);
+        ListNode node0 = new ListNode(1, node1);
+        System.out.println(getDecimalValue(node0));
+
     }
 }
