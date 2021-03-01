@@ -1607,7 +1607,7 @@ public class AlgorithmEasy {
     public static String mergeAlternately(String word1, String word2) {
 //        https://leetcode.com/problems/merge-strings-alternately/
 //        System.out.println(mergeAlternately("ab", "pqrs"));
-        
+
         StringBuilder sb = new StringBuilder();
         StringBuilder w1 = new StringBuilder(word1);
         StringBuilder w2 = new StringBuilder(word2);
@@ -1622,6 +1622,44 @@ public class AlgorithmEasy {
             }
         }
         return sb.toString();
+    }
+
+    public static int repeatedNTimes(int[] A) {
+//        https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+//        System.out.println(repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4}));
+
+        int res = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < A.length; i++) {
+            if (map.containsKey(A[i])) {
+                res = A[i];
+                break;
+            } else {
+                map.put(A[i], 0);
+            }
+        }
+
+        return res;
+    }
+
+    public static boolean judgeCircle(String moves) {
+//        https://leetcode.com/problems/robot-return-to-origin/
+//        System.out.println(judgeCircle("LL"));
+        
+        int x = 0, y = 0;
+        for (int i = 0; i < moves.length(); i++) {
+            if (moves.charAt(i) == 'U') {
+                y++;
+            } else if (moves.charAt(i) == 'D') {
+                y--;
+            } else if (moves.charAt(i) == 'R') {
+                x++;
+            } else if (moves.charAt(i) == 'L') {
+                x--;
+            }
+        }
+        return (x == 0 && y == 0);
     }
 
     public static void main(String[] args) {
