@@ -1646,7 +1646,7 @@ public class AlgorithmEasy {
     public static boolean judgeCircle(String moves) {
 //        https://leetcode.com/problems/robot-return-to-origin/
 //        System.out.println(judgeCircle("LL"));
-        
+
         int x = 0, y = 0;
         for (int i = 0; i < moves.length(); i++) {
             if (moves.charAt(i) == 'U') {
@@ -1660,6 +1660,43 @@ public class AlgorithmEasy {
             }
         }
         return (x == 0 && y == 0);
+    }
+
+    public static int[] diStringMatch(String S) {
+//        https://leetcode.com/problems/di-string-match/
+//        int[] a = diStringMatch("IDID");
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.print(a[i] + " ");
+//        }
+
+        int[] a = new int[S.length() + 1];
+
+        int i = 0, btm = 0, top = S.length();
+        for (char c : S.toCharArray()) {
+            if (c == 'I') {
+                a[i++] = btm++;
+            } else {
+                a[i++] = top--;
+            }
+        }
+        if (S.charAt(S.length() - 1) == 'I') {
+            a[i++] = btm++;
+        } else {
+            a[i++] = top--;
+        }
+        return a;
+    }
+
+    public static int arrayPairSum(int[] nums) {
+//        https://leetcode.com/problems/array-partition-i/
+//        System.out.println(arrayPairSum(new int[]{6, 2, 6, 5, 1, 2}));
+
+        int sum = 0;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i += 2) {
+            sum += nums[i];
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
