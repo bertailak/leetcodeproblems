@@ -1532,12 +1532,34 @@ public class AlgorithmEasy {
     public static boolean isSameTree(TreeNode p, TreeNode q) {
 //        https://leetcode.com/problems/same-tree/
 //        System.out.println(isSameTree(insertByOrder(0, new Object[]{1, 2, 1}), insertByOrder(0, new Object[]{1, 1, 2})));
-        
+
         boolean res = true;
         if (!(p == null && q == null)) {
             res = p != null && q != null && p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
         }
         return res;
+    }
+
+    public static int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+//        https://leetcode.com/problems/count-items-matching-a-rule/
+//        List<String> line1 = new ArrayList<>();
+//        line1.add("phone");
+//        line1.add("blue");
+//        line1.add("pixel");
+//        List<List<String>> lines = new ArrayList<>();
+//        lines.add(line1);
+//
+//        System.out.println(countMatches(lines, "type", "phone"));
+
+        int count = 0;
+        int ind = ruleKey.equals("type") ? 0 : ruleKey.equals("color") ? 1 : 2;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).get(ind).equals(ruleValue)) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     public static void main(String[] args) {
