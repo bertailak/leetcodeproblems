@@ -1586,7 +1586,7 @@ public class AlgorithmEasy {
 //        ListNode node1 = new ListNode(0, node2);
 //        ListNode node0 = new ListNode(1, node1);
 //        System.out.println(getDecimalValue(node0));
-        
+
         int res = 0;
         int pow = 1;
 
@@ -1604,12 +1604,26 @@ public class AlgorithmEasy {
         return res;
     }
 
+    public static String mergeAlternately(String word1, String word2) {
+//        https://leetcode.com/problems/merge-strings-alternately/
+//        System.out.println(mergeAlternately("ab", "pqrs"));
+        
+        StringBuilder sb = new StringBuilder();
+        StringBuilder w1 = new StringBuilder(word1);
+        StringBuilder w2 = new StringBuilder(word2);
+        while (w1.length() > 0 || w2.length() > 0) {
+            if (w1.length() > 0) {
+                sb.append(w1.charAt(0));
+                w1.deleteCharAt(0);
+            }
+            if (w2.length() > 0) {
+                sb.append(w2.charAt(0));
+                w2.deleteCharAt(0);
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
-
-        ListNode node2 = new ListNode(1);
-        ListNode node1 = new ListNode(0, node2);
-        ListNode node0 = new ListNode(1, node1);
-        System.out.println(getDecimalValue(node0));
-
     }
 }
