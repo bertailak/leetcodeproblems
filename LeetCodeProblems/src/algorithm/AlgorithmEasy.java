@@ -32,6 +32,20 @@ public class AlgorithmEasy {
         return null;
     }
 
+    public static ListNode insertByOrder(int[] nums) {
+        Stack<Integer> st = new Stack();
+        for (int i = 0; i < nums.length; i++) {
+            st.add(nums[i]);
+        }
+
+        ListNode node = new ListNode(st.pop());
+        while (!st.isEmpty()) {
+            node = new ListNode(st.pop(), node);
+        }
+
+        return node;
+    }
+
     public static void printTree(TreeNode root) {
         Queue<TreeNode> s = new LinkedList<>();
         HashMap<Integer, TreeNode> m = new HashMap<>();
@@ -1697,6 +1711,55 @@ public class AlgorithmEasy {
             sum += nums[i];
         }
         return sum;
+    }
+
+    public static int hammingDistance(int x, int y) {
+//        https://leetcode.com/problems/hamming-distance/
+//        System.out.println(hammingDistance(1, 4));
+
+        int count = 0;
+        StringBuilder sX = new StringBuilder(Integer.toBinaryString(x)).reverse();
+        StringBuilder sY = new StringBuilder(Integer.toBinaryString(y)).reverse();
+
+        int i = 0;
+        while (i < sX.length() || i < sY.length()) {
+            if (i < sX.length() && i < sY.length()) {
+                if (sX.charAt(i) != sY.charAt(i)) {
+                    count++;
+                }
+            } else {
+                if (i < sX.length() && sX.charAt(i) == '1') {
+                    count++;
+                } else if (i < sY.length() && sY.charAt(i) == '1') {
+                    count++;
+                }
+            }
+            i++;
+        }
+        return count;
+    }
+
+    static class RecentCounter {
+//        https://leetcode.com/problems/number-of-recent-calls/
+        
+        List<Integer> req;
+
+        public RecentCounter() {
+            req = new ArrayList<>();
+        }
+
+        public int ping(int t) {
+            int count = 0;
+            req.add(t);
+            for (int i = req.size() - 1; i >= 0; i--) {
+                if (req.get(i) >= t - 3000) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+            return count;
+        }
     }
 
     public static void main(String[] args) {
