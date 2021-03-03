@@ -1741,7 +1741,7 @@ public class AlgorithmEasy {
 
     static class RecentCounter {
 //        https://leetcode.com/problems/number-of-recent-calls/
-        
+
         List<Integer> req;
 
         public RecentCounter() {
@@ -1760,6 +1760,39 @@ public class AlgorithmEasy {
             }
             return count;
         }
+    }
+
+    public static int heightChecker(int[] heights) {
+//        https://leetcode.com/problems/height-checker/
+//        System.out.println(heightChecker(new int[]{2, 1, 3}));
+
+        int count = 0;
+        int[] sorted = Arrays.copyOf(heights, heights.length);
+        Arrays.sort(sorted);
+
+        for (int i = 0; i < sorted.length; i++) {
+            if (heights[i] != sorted[i]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static boolean canBeEqual(int[] target, int[] arr) {
+//        https://leetcode.com/problems/make-two-arrays-equal-by-reversing-sub-arrays/
+        boolean result = true;
+        Arrays.sort(target);
+        Arrays.sort(arr);
+
+        for (int i = 0; i < arr.length; i++) {
+            if (target[i] != arr[i]) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
