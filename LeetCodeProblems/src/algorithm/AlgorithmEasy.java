@@ -1828,6 +1828,35 @@ public class AlgorithmEasy {
         }
         return res;
     }
+    static List<String> binaryTreePaths;
+
+    public static List<String> binaryTreePaths(TreeNode root) {
+//        https://leetcode.com/problems/binary-tree-paths/
+//        List<String> s = binaryTreePaths(insertByOrder(0, new Object[]{}));
+//        for (int i = 0; i < s.size(); i++) {
+//            System.out.println(s.get(i));
+//        }
+
+        binaryTreePaths = new ArrayList<>();
+        if (root != null) {
+            binaryTreePath(root, "");
+        }
+        return binaryTreePaths;
+    }
+
+    public static void binaryTreePath(TreeNode root, String path) {
+        path = path + "->" + root.val;
+        if (root.left == null && root.right == null) {
+            binaryTreePaths.add(path.substring(2));
+        }
+
+        if (root.left != null) {
+            binaryTreePath(root.left, path);
+        }
+        if (root.right != null) {
+            binaryTreePath(root.right, path);
+        }
+    }
 
     public static void main(String[] args) {
     }
