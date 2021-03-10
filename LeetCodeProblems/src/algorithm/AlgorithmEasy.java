@@ -46,6 +46,18 @@ public class AlgorithmEasy {
         return node;
     }
 
+    static ArrayList<Integer> tlist = new ArrayList<>();
+
+    public static void getSortedList(TreeNode node) {
+        if (node.left != null) {
+            getSortedList(node.left);
+        }
+        tlist.add(node.val);
+        if (node.right != null) {
+            getSortedList(node.right);
+        }
+    }
+
     public static void printTree(TreeNode root) {
         Queue<TreeNode> s = new LinkedList<>();
         HashMap<Integer, TreeNode> m = new HashMap<>();
@@ -1793,6 +1805,28 @@ public class AlgorithmEasy {
         }
 
         return result;
+    }
+
+    public static boolean findTarget(TreeNode root, int k) {
+//        https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+//        System.out.println(findTarget(insertByOrder(0, new Object[]{1}), 2));
+
+        Boolean res = false;
+        tlist = new ArrayList<>();
+        getSortedList(root);
+        for (int i = 0; i < tlist.size() - 1; i++) {
+            for (int j = i + 1; j < tlist.size(); j++) {
+                if (tlist.get(i) + tlist.get(j) == k) {
+                    res = true;
+                    break;
+                }
+            }
+            if (res) {
+                break;
+            }
+
+        }
+        return res;
     }
 
     public static void main(String[] args) {
