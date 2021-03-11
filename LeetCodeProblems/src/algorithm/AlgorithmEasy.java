@@ -1858,6 +1858,35 @@ public class AlgorithmEasy {
         }
     }
 
+    public static int minDepth(TreeNode root) {
+//        https://leetcode.com/problems/minimum-depth-of-binary-tree/
+//        System.out.println(minDepth(insertByOrder(0, new Object[]{1, 2, 3, 4, 4})));
+
+        int depth = 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root != null) {
+            root.val = 1;
+            q.offer(root);
+        }
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node.left == null && node.right == null) {
+                depth = node.val;
+                break;
+            } else {
+                if (node.left != null) {
+                    node.left.val = node.val + 1;
+                    q.add(node.left);
+                }
+                if (node.right != null) {
+                    node.right.val = node.val + 1;
+                    q.add(node.right);
+                }
+            }
+        }
+        return depth;
+    }
+
     public static void main(String[] args) {
     }
 }
