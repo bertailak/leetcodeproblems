@@ -1887,6 +1887,38 @@ public class AlgorithmEasy {
         return depth;
     }
 
+    public static boolean hasPathSum(TreeNode root, int targetSum) {
+//        https://leetcode.com/problems/path-sum/
+
+        boolean result = false;
+
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root != null) {
+            q.add(root);
+        }
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node.left == null && node.right == null) {
+                if (node.val == targetSum) {
+                    result = true;
+                    break;
+                }
+            } else {
+                if (node.left != null) {
+                    node.left.val += node.val;
+                    q.add(node.left);
+                }
+                if (node.right != null) {
+                    node.right.val += node.val;
+                    q.add(node.right);
+                }
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
+        System.out.println(hasPathSum(insertByOrder(0, new Object[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1}), 22));
     }
 }
