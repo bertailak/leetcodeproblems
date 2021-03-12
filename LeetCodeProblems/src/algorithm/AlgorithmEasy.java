@@ -1889,6 +1889,7 @@ public class AlgorithmEasy {
 
     public static boolean hasPathSum(TreeNode root, int targetSum) {
 //        https://leetcode.com/problems/path-sum/
+//        System.out.println(hasPathSum(insertByOrder(0, new Object[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1}), 22));
 
         boolean result = false;
 
@@ -1918,7 +1919,39 @@ public class AlgorithmEasy {
         return result;
     }
 
+    public static int findSecondMinimumValue(TreeNode root) {
+//        https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/
+//        System.out.println(findSecondMinimumValue(insertByOrder(0, new Object[]{1,1,3,1,1,3,4,3,1,1,1,3,8,4,8,3,3,1,6,2,1})));
+
+        TreeNode t = new TreeNode();
+        int min = -1;
+
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root != null) {
+            q.add(root);
+            t = new TreeNode(root.val);
+            while (!q.isEmpty()) {
+                TreeNode node = q.poll();
+                if (node.left == null && node.right == null) {
+                } else {
+                    q.add(node.left);
+                    q.add(node.right);
+                    insert_Recursive(t, node.left.val);
+                    insert_Recursive(t, node.right.val);
+                }
+            }
+            tlist = new ArrayList<>();
+            getSortedList(t);
+            for (int i = 0; i < tlist.size(); i++) {
+                if (root.val < tlist.get(i)) {
+                    min = tlist.get(i);
+                    break;
+                }
+            }
+        }
+        return min;
+    }
+
     public static void main(String[] args) {
-        System.out.println(hasPathSum(insertByOrder(0, new Object[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1}), 22));
     }
 }
