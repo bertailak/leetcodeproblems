@@ -1991,6 +1991,32 @@ public class AlgorithmEasy {
         return result;
     }
 
+    public static List<String> subdomainVisits(String[] cpdomains) {
+//        https://leetcode.com/problems/subdomain-visit-count/
+//        List<String> l = subdomainVisits(new String[]{"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"});
+//        for (int i = 0; i < l.size(); i++) {
+//            System.out.println(l.get(i));
+//        }
+
+        List<String> list = new ArrayList<>();
+
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < cpdomains.length; i++) {
+            String cpdomain = cpdomains[i].split(" ")[1];
+            map.put(cpdomain, Integer.parseInt(cpdomains[i].split(" ")[0]) + map.getOrDefault(cpdomain, 0));
+            while (cpdomain.indexOf(".") > 0) {
+                cpdomain = cpdomain.substring(cpdomain.indexOf(".") + 1);
+                map.put(cpdomain, Integer.parseInt(cpdomains[i].split(" ")[0]) + map.getOrDefault(cpdomain, 0));
+            }
+
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            list.add(entry.getValue() + " " + entry.getKey());
+        }
+
+        return list;
+    }
+
     public static void main(String[] args) {
     }
 }
