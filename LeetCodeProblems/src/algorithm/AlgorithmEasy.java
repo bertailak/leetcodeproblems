@@ -1966,6 +1966,31 @@ public class AlgorithmEasy {
         return nums;
     }
 
+    public static boolean uniqueOccurrences(int[] arr) {
+//        https://leetcode.com/problems/unique-number-of-occurrences/
+//        System.out.println(uniqueOccurrences(new int[]{-3,0,1,-3,1,1,1,-3,10,0}));
+
+        boolean result = true;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (map.containsKey(arr[i])) {
+                map.replace(arr[i], map.get(arr[i]) + 1);
+            } else {
+                map.put(arr[i], 1);
+            }
+        }
+        List<Integer> list = new ArrayList<Integer>(map.values());
+        Collections.sort(list);
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i) == list.get(i + 1)) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
     }
 }
