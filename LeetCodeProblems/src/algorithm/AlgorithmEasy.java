@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -2015,6 +2016,17 @@ public class AlgorithmEasy {
         }
 
         return list;
+    }
+
+    public static String reverseWords(String s) {
+//        https://leetcode.com/problems/reverse-words-in-a-string-iii/
+//        System.out.println(reverseWords("God Ding"));
+
+        String[] a = s.split(" ");
+        for (int i = 0; i < a.length; i++) {
+            a[i] = new StringBuilder(a[i]).reverse().toString();
+        }
+        return String.join(" ", a);
     }
 
     public static void main(String[] args) {
