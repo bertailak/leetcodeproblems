@@ -2038,6 +2038,14 @@ public class AlgorithmEasy {
         return ((x + y) & 1) == 0;
     }
 
+    public static String truncateSentence(String s, int k) {
+//        https://leetcode.com/problems/truncate-sentence/
+//        System.out.println(truncateSentence("chopper is not a tanuki", 5));
+
+        String[] arr = s.split(" ");
+        return String.join(" ", Arrays.copyOf(arr, k));
+    }
+
     public static void main(String[] args) {
     }
 }
