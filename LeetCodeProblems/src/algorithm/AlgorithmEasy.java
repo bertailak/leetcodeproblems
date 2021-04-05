@@ -2029,6 +2029,15 @@ public class AlgorithmEasy {
         return String.join(" ", a);
     }
 
+    public static boolean squareIsWhite(String coordinates) {
+//        https://stackoverflow.com/questions/7342237/check-whether-number-is-even-or-odd/51998794
+//        System.out.println(squareIsWhite("a1"));
+
+        int x = coordinates.charAt(0) - 'a';
+        int y = coordinates.charAt(1) - '0';
+        return ((x + y) & 1) == 0;
+    }
+
     public static void main(String[] args) {
     }
 }
