@@ -2046,6 +2046,62 @@ public class AlgorithmEasy {
         return String.join(" ", Arrays.copyOf(arr, k));
     }
 
+    public static int[] kWeakestRows(int[][] mat, int k) {
+//        https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
+//        int[][] arr = {
+//            {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
+//            {1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+//            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+//            {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+//        int[] ar = kWeakestRows(arr, 1);
+//        for (int i = 0; i < ar.length; i++) {
+//            System.out.print(ar[i] + " ");
+//        }
+
+        String[] s = new String[mat.length];
+        for (int i = 0; i < mat.length; i++) {
+            int count = 0;
+            for (int j = 0; j < mat[0].length; j++) {
+                count += mat[i][j];
+            }
+            s[i] = count + "-" + i;
+            System.out.println(s[i]);
+        }
+        int[] a = new int[k];
+        Arrays.sort(s);
+        for (int i = 0; i < a.length; i++) {
+            a[i] = Integer.parseInt(s[i].split("-")[1]);
+        }
+
+        return a;
+    }
+
+    public static int peakIndexInMountainArray(int[] arr) {
+//        https://leetcode.com/problems/peak-index-in-a-mountain-array/
+//        System.out.println(peakIndexInMountainArray(new int[]{24, 69, 100, 99, 79, 78, 67, 36, 26, 19}));
+
+        int index = 0;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[index] < arr[i]) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
     public static void main(String[] args) {
     }
 }
