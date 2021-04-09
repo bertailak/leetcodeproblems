@@ -2102,6 +2102,27 @@ public class AlgorithmEasy {
         return index;
     }
 
+    public static String removeDuplicates(String S) {
+//        https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+//        System.out.println(removeDuplicates("abbaca"));
+
+        StringBuilder sb = new StringBuilder(S);
+        int i = 0;
+        while (i < sb.length() - 1) {
+            if (sb.charAt(i) == sb.charAt(i + 1)) {
+                sb.deleteCharAt(i);
+                sb.deleteCharAt(i);
+                i -= 2;
+            }
+            i++;
+            if (i < 0) {
+                i++;
+            }
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
     }
 }
