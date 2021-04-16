@@ -2145,6 +2145,24 @@ public class AlgorithmEasy {
         return res;
     }
     
+    public static int[] sortArrayByParityII(int[] nums) {
+//        https://leetcode.com/problems/sort-array-by-parity-ii/
+//        int[] A = sortArrayByParityII(new int[]{4, 2, 5, 7});
+//        for (int i = 0; i < A.length; i++) {
+//            System.out.print(A[i] + " ");
+//        }
+
+        List<Integer> l = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        List<Integer> evens = l.stream().filter(x -> x % 2 == 0).collect(Collectors.toList());
+        List<Integer> odds = l.stream().filter(x -> x % 2 == 1).collect(Collectors.toList());
+                
+        for (int i = 0; i < nums.length / 2; i++) {
+            nums[2 * i] = evens.get(i);
+            nums[2 * i + 1] = odds.get(i);
+        }
+        return nums;
+    }
+    
     public static void main(String[] args) {
     }
 }
