@@ -2232,6 +2232,13 @@ public class AlgorithmEasy {
 //        System.out.println();
     }
 
+    public static boolean divisorGame(int n) {
+//        https://leetcode.com/problems/divisor-game/
+//        System.out.println(divisorGame(3));
+
+        return n % 2 == 0;
+    }
+
     public static void main(String[] args) {
     }
 }
