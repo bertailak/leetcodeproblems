@@ -2181,6 +2181,41 @@ public class AlgorithmEasy {
         return nums;
     }
 
+    public static boolean checkIfPangram(String sentence) {
+//        https://leetcode.com/problems/check-if-the-sentence-is-pangram/
+//        System.out.println(checkIfPangram("leetcode"));
+
+        boolean[] a = new boolean[26];
+
+        for (int i = 0; i < sentence.length(); i++) {
+            a[sentence.charAt(i) - 'a'] = true;
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            if (!a[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static int minOperations(int[] nums) {
+//        https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/
+//        System.out.println(minOperations(new int[]{1, 5, 2, 4, 1}));
+
+        int sum = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] >= nums[i + 1]) {
+                sum += (nums[i] + 1 - nums[i + 1]);
+                nums[i + 1] = nums[i] + 1;
+            }
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
     }
 }
