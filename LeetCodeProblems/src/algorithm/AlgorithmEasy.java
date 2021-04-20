@@ -2089,22 +2089,27 @@ public class AlgorithmEasy {
 //            System.out.print(ar[i] + " ");
 //        }
 
-        String[] s = new String[mat.length];
         for (int i = 0; i < mat.length; i++) {
-            int count = 0;
-            for (int j = 0; j < mat[0].length; j++) {
-                count += mat[i][j];
+            for (int j = 1; j < mat[0].length; j++) {
+                mat[i][0] += mat[i][j];
             }
-            s[i] = count + "-" + i;
-            System.out.println(s[i]);
         }
-        int[] a = new int[k];
-        Arrays.sort(s);
-        for (int i = 0; i < a.length; i++) {
-            a[i] = Integer.parseInt(s[i].split("-")[1]);
+        List<Integer> arr = new ArrayList<>();
+        for (int i = 0; i <= mat[0].length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+                if (i == mat[j][0]) {
+                    arr.add(j);
+                }
+                if (arr.size() >= k) {
+                    break;
+                }
+            }
+            if (arr.size() >= k) {
+                break;
+            }
         }
 
-        return a;
+        return arr.stream().mapToInt(i -> i).toArray();
     }
 
     public static int peakIndexInMountainArray(int[] arr) {
