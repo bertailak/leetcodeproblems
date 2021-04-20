@@ -2244,6 +2244,59 @@ public class AlgorithmEasy {
         return n % 2 == 0;
     }
 
+    public static List<Integer> luckyNumbers(int[][] matrix) {
+//        https://leetcode.com/problems/lucky-numbers-in-a-matrix/
+//        int[][] a = {{1, 10, 4, 2}, {9, 3, 8, 7}, {15, 16, 17, 12}};
+//        List<Integer> l = luckyNumbers(a);
+//        for (int i = 0; i < l.size(); i++) {
+//            System.out.println(l.get(i));
+//        }
+
+        List<Integer> list = new ArrayList<>();
+        int[] mins = new int[matrix.length];
+        int[] maxs = new int[matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            mins[i] = matrix[i][0];
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                mins[i] = Math.min(matrix[i][j], mins[i]);
+                maxs[j] = Math.max(matrix[i][j], maxs[j]);
+            }
+        }
+
+        for (int i = 0; i < mins.length; i++) {
+            for (int j = 0; j < maxs.length; j++) {
+                int min = mins[i];
+                int max = maxs[j];
+                if (min == max) {
+                    list.add(min);
+                }
+            }
+        }
+
+        return list;
+
+    }
+
+    public static int fib(int n) {
+//        https://leetcode.com/problems/fibonacci-number/
+//        System.out.println(fib(3));
+
+        int[] a = new int[n + 1];
+        a[0] = 0;
+        if (n > 0) {
+            a[1] = 1;
+        }
+
+        for (int i = 2; i < a.length; i++) {
+            a[i] = a[i - 1] + a[i - 2];
+        }
+
+        return a[n];
+    }
+
     public static void main(String[] args) {
     }
 }
