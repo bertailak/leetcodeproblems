@@ -2297,6 +2297,38 @@ public class AlgorithmEasy {
         return a[n];
     }
 
+    public static int sumOfLeftLeaves(TreeNode root) {
+//        https://leetcode.com/problems/sum-of-left-leaves/
+
+        int res = 0;
+        if (root != null) {
+            if (root.left == null) {
+                res += root.val;
+            } else {
+                res += sumOfLeftLeaves(root.left);
+                res += sumOfLeftLeaves(root.right);
+            }
+        }
+        return res;
+    }
+
+    public static int sumBase(int n, int k) {
+//        https://leetcode.com/problems/sum-of-digits-in-base-k/
+        
+        int sum = 0;
+        String s = Integer.toString(n, k);
+
+        for (int i = 0; i < s.length(); i++) {
+            sum += Integer.parseInt(s.charAt(i) + "");
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
+//        Object[] obj = {1,2,3,4,5};
+        Object[] obj = {3, 9, 20, null, null, 15, 7};
+        TreeNode t = insertByOrder(0, obj);
+        System.out.println(sumOfLeftLeaves(t));
     }
 }
