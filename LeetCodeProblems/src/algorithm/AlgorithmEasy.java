@@ -2299,22 +2299,39 @@ public class AlgorithmEasy {
 
     public static int sumOfLeftLeaves(TreeNode root) {
 //        https://leetcode.com/problems/sum-of-left-leaves/
+//        Object[] obj = {1,2,3,4,5};
+//        Object[] obj = {3, 9, 20, null, null, 15, 7};
+//        TreeNode t = insertByOrder(0, obj);
+//        System.out.println(sumOfLeftLeaves(t));
+
 
         int res = 0;
         if (root != null) {
-            if (root.left == null) {
+            res += sumOfLeftLeaves(root.left, true);
+            res += sumOfLeftLeaves(root.right, false);
+        }
+
+        return res;
+    }
+
+    public static int sumOfLeftLeaves(TreeNode root, boolean isLeft) {
+        int res = 0;
+
+        if (root != null) {
+            if (root.left != null || root.right != null) {
+                res += sumOfLeftLeaves(root.left, true);
+                res += sumOfLeftLeaves(root.right, false);
+            } else if (isLeft) {
                 res += root.val;
-            } else {
-                res += sumOfLeftLeaves(root.left);
-                res += sumOfLeftLeaves(root.right);
             }
         }
+
         return res;
     }
 
     public static int sumBase(int n, int k) {
 //        https://leetcode.com/problems/sum-of-digits-in-base-k/
-        
+
         int sum = 0;
         String s = Integer.toString(n, k);
 
@@ -2326,9 +2343,5 @@ public class AlgorithmEasy {
     }
 
     public static void main(String[] args) {
-//        Object[] obj = {1,2,3,4,5};
-        Object[] obj = {3, 9, 20, null, null, 15, 7};
-        TreeNode t = insertByOrder(0, obj);
-        System.out.println(sumOfLeftLeaves(t));
     }
 }
