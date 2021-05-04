@@ -2304,7 +2304,6 @@ public class AlgorithmEasy {
 //        TreeNode t = insertByOrder(0, obj);
 //        System.out.println(sumOfLeftLeaves(t));
 
-
         int res = 0;
         if (root != null) {
             res += sumOfLeftLeaves(root.left, true);
@@ -2340,6 +2339,52 @@ public class AlgorithmEasy {
         }
 
         return sum;
+    }
+
+    public static boolean isCousins(TreeNode root, int x, int y) {
+//        https://leetcode.com/problems/cousins-in-binary-tree/
+//        Object[] obj = {1, 2, 3, 4};
+//        TreeNode t = insertByOrder(0, obj);
+//        System.out.println(isCousins(t, 4, 3));
+
+        HashMap<TreeNode, Integer> map = new HashMap<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node.left != null) {
+                q.add(node.left);
+                if (node.left.val == x || node.left.val == y) {
+                    map.put(node.left, node.val);
+                }
+            }
+            if (node.right != null) {
+                q.add(node.right);
+                if (node.left.val == x || node.left.val == y) {
+                    map.put(node.right, node.val);
+                }
+            }
+        }
+
+        return map.get(x) != map.get(y);
+    }
+
+    public static String replaceDigits(String s) {
+//        https://leetcode.com/problems/replace-all-digits-with-characters/
+//        System.out.println(replaceDigits("a1c1e1"));
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (i % 2 == 0) {
+                sb.append(s.charAt(i));
+            } else {
+                byte x = Byte.parseByte(s.charAt(i) + "");
+                sb.append((char) (s.charAt(i - 1) + x));
+            }
+        }
+
+        return sb.toString();
     }
 
     public static void main(String[] args) {
