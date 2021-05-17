@@ -2387,6 +2387,21 @@ public class AlgorithmEasy {
         return sb.toString();
     }
 
+    public static String sortSentence(String s) {
+//            https://leetcode.com/problems/sorting-the-sentence/
+//        System.out.println(sortSentence("Myself2 Me1 I4 and3"));
+
+        String[] splited = s.split(" ");
+        String[] result = new String[splited.length];
+
+        for (int i = 0; i < splited.length; i++) {
+            int index = splited[i].charAt(splited[i].length() - 1) - '1';
+            result[index] = splited[i].substring(0, splited[i].length() - 1);
+        }
+
+        return String.join(" ", result);
+    }
+
     public static void main(String[] args) {
     }
 }
