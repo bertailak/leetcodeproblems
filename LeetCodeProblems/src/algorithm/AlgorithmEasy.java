@@ -2388,7 +2388,7 @@ public class AlgorithmEasy {
     }
 
     public static String sortSentence(String s) {
-//            https://leetcode.com/problems/sorting-the-sentence/
+//        https://leetcode.com/problems/sorting-the-sentence/
 //        System.out.println(sortSentence("Myself2 Me1 I4 and3"));
 
         String[] splited = s.split(" ");
@@ -2400,6 +2400,28 @@ public class AlgorithmEasy {
         }
 
         return String.join(" ", result);
+    }
+
+    public static int maximumPopulation(int[][] logs) {
+//        https://leetcode.com/problems/maximum-population-year/
+//        System.out.println(maximumPopulation(new int[][]{{2008, 2026}, {2004, 2008}, {2034, 2035}, {1999, 2050}, {2049, 2050}, {2011, 2035}, {1966, 2033}, {2044, 2049}}));
+
+        int max = 0;
+        int[] years = new int[101];
+
+        for (int[] log : logs) {
+            for (int j = log[0] - 1950; j < log[1] - 1950; j++) {
+                years[j]++;
+            }
+        }
+
+        for (int i = 0; i < years.length; i++) {
+            if (years[max] < years[i]) {
+                max = i;
+            }
+        }
+
+        return max + 1950;
     }
 
     public static void main(String[] args) {
