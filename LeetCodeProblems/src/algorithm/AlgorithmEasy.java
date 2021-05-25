@@ -2454,11 +2454,49 @@ public class AlgorithmEasy {
 //        for (int i = 0; i < arr.length; i++) {
 //            System.out.print(arr[i] + " ");
 //        }
-        
+
         int[] arr = new int[n + 1];
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = Integer.toBinaryString(i).replace("0", "").length();
+        }
+
+        return arr;
+    }
+
+    public static int[] shortestToChar(String s, char c) {
+//        https://leetcode.com/problems/shortest-distance-to-a-character/
+//        int[] arr = shortestToChar("loveleetcode", 'e');
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.print(arr[i] + " ");
+//        }
+        
+        int[] arr = new int[s.length()];
+
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < s.length(); i++) {
+            arr[i] = -1;
+            if (s.charAt(i) == c) {
+                arr[i] = 0;
+                q.add(i);
+            }
+        }
+
+        int step = 0;
+        while (!q.isEmpty()) {
+            step++;
+            int len = q.size();
+            for (int i = 0; i < len; i++) {
+                int current = q.poll();
+                if (0 < current && arr[current - 1] == -1) {
+                    arr[current - 1] = step;
+                    q.add(current - 1);
+                }
+                if (current < arr.length - 1 && arr[current + 1] == -1) {
+                    arr[current + 1] = step;
+                    q.add(current + 1);
+                }
+            }
         }
 
         return arr;
