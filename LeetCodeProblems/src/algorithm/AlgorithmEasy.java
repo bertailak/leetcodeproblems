@@ -2424,6 +2424,29 @@ public class AlgorithmEasy {
         return max + 1950;
     }
 
+    public static int subsetXORSum(int[] nums) {
+        return subsetXORSums(nums, new ArrayList<>(), 0);
+    }
+
+    public static int subsetXORSums(int[] nums, List<Integer> set, int index) {
+        int sum = 0;
+        if (index <= nums.length) {
+
+            for (int i = 0; i < set.size(); i++) {
+                sum = sum ^ set.get(i);
+            }
+
+            for (int i = index; i < nums.length; i++) {
+                set.add(nums[i]);
+                sum += subsetXORSums(nums, set, i + 1);
+                set.remove(set.size() - 1);
+            }
+
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
+        System.out.println(subsetXORSum(new int[]{5,1,6}));
     }
 }
