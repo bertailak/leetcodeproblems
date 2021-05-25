@@ -2425,6 +2425,8 @@ public class AlgorithmEasy {
     }
 
     public static int subsetXORSum(int[] nums) {
+//        https://leetcode.com/problems/sum-of-all-subset-xor-totals/totals
+//        System.out.println(subsetXORSum(new int[]{5,1,6}));
         return subsetXORSums(nums, new ArrayList<>(), 0);
     }
 
@@ -2447,6 +2449,5 @@ public class AlgorithmEasy {
     }
 
     public static void main(String[] args) {
-        System.out.println(subsetXORSum(new int[]{5,1,6}));
     }
 }
