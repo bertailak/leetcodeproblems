@@ -2448,6 +2448,22 @@ public class AlgorithmEasy {
         return sum;
     }
 
+    public static int[] countBits(int n) {
+//        https://leetcode.com/problems/counting-bits/
+//        int[] arr = countBits(5);
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.print(arr[i] + " ");
+//        }
+        
+        int[] arr = new int[n + 1];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Integer.toBinaryString(i).replace("0", "").length();
+        }
+
+        return arr;
+    }
+
     public static void main(String[] args) {
     }
 }
