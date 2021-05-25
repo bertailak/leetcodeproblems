@@ -2528,6 +2528,35 @@ public class AlgorithmEasy {
         return list.stream().mapToInt(i -> i).toArray();
     }
 
+    public static List<Integer> minSubsequence(int[] nums) {
+//        https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/
+//        List<Integer> list = minSubsequence(new int[]{6});
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.print(list.get(i) + " ");
+//        }
+        
+        List<Integer> list = new ArrayList<>();
+
+        int sumall = 0;
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sumall += nums[i];
+        }
+
+        Arrays.sort(nums);
+        for (int i = nums.length - 1; i >= 0; i--) {
+
+            list.add(nums[i]);
+            sum += nums[i];
+            sumall -= nums[i];
+            if (sum > sumall) {
+                break;
+            }
+        }
+
+        return list;
+    }
+
     public static void main(String[] args) {
     }
 }
