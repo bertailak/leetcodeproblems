@@ -2470,7 +2470,7 @@ public class AlgorithmEasy {
 //        for (int i = 0; i < arr.length; i++) {
 //            System.out.print(arr[i] + " ");
 //        }
-        
+
         int[] arr = new int[s.length()];
 
         Queue<Integer> q = new LinkedList<>();
@@ -2500,6 +2500,32 @@ public class AlgorithmEasy {
         }
 
         return arr;
+    }
+
+    public static int[] sortByBits(int[] arr) {
+//        https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
+//        int[] arr = sortByBits(new int[]{0,1,2,3,4,5,6,7,8});
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.print(arr[i] + " ");
+//        }
+
+        LinkedList<Integer> list = new LinkedList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            int num = arr[i];
+            int ones = Integer.toBinaryString(num).replace("0", "").length();
+
+            int ind = 0;
+            for (ind = 0; ind < list.size(); ind++) {
+                int ones2 = Integer.toBinaryString(list.get(ind)).replace("0", "").length();
+                if ((ones2 > ones) || (ones2 == ones && list.get(ind) > num)) {
+                    break;
+                }
+            }
+            list.add(ind, num);
+        }
+
+        return list.stream().mapToInt(i -> i).toArray();
     }
 
     public static void main(String[] args) {
