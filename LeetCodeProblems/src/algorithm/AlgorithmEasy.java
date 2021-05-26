@@ -2713,7 +2713,7 @@ public class AlgorithmEasy {
     public static int majorityElement(int[] nums) {
 //        https://leetcode.com/problems/majority-element/
 //        System.out.println(majorityElement(new int[]{2, 2, 1, 1, 1, 2, 2}));
-                
+
         int res = 0;
 
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -2731,6 +2731,25 @@ public class AlgorithmEasy {
                 res = integer;
                 break;
             }
+        }
+
+        return res;
+    }
+
+    public static boolean hasAlternatingBits(int n) {
+//        https://leetcode.com/problems/binary-number-with-alternating-bits/
+//        System.out.println(hasAlternatingBits(3));
+
+        boolean res = true;
+        int bit = n & 1;
+
+        while (n > 0) {
+            if (bit != (n & 1)) {
+                res = false;
+                break;
+            }
+            n >>= 1;
+            bit = 1 - bit;
         }
 
         return res;
