@@ -2534,7 +2534,7 @@ public class AlgorithmEasy {
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.print(list.get(i) + " ");
 //        }
-        
+
         List<Integer> list = new ArrayList<>();
 
         int sumall = 0;
@@ -2555,6 +2555,24 @@ public class AlgorithmEasy {
         }
 
         return list;
+    }
+
+    public static boolean canMakeArithmeticProgression(int[] arr) {
+//        https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
+//        System.out.println(canMakeArithmeticProgression(new int[]{1, 2, 4}));
+
+        boolean res = true;
+
+        Arrays.sort(arr);
+        int interval = arr[1] - arr[0];
+        for (int i = 2; i < arr.length; i++) {
+            if (arr[i] - arr[i - 1] != interval) {
+                res = false;
+                break;
+            }
+        }
+
+        return res;
     }
 
     public static void main(String[] args) {
