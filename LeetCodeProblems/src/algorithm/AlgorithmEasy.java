@@ -2780,6 +2780,21 @@ public class AlgorithmEasy {
         return (char) ('a' + c);
     }
 
-    public static void main(String[] args) {
+    public static int missingNumber(int[] nums) {
+//        https://leetcode.com/problems/missing-number/    
+//        System.out.println(missingNumber(new int[]{0}));
+
+        int res = nums.length;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (i != nums[i]) {
+                res = i;
+                break;
+            }
+        }
+        return res;
     }
+
+    public static void main(String[] args) {
+    }   
 }
