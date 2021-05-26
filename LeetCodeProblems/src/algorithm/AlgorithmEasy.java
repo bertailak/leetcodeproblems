@@ -34,14 +34,14 @@ public class AlgorithmEasy {
     }
 
     public static ListNode insertByOrder(int[] nums) {
-        Stack<Integer> st = new Stack();
-        for (int i = 0; i < nums.length; i++) {
-            st.add(nums[i]);
+        if (nums.length == 0) {
+            return null;
         }
 
-        ListNode node = new ListNode(st.pop());
-        while (!st.isEmpty()) {
-            node = new ListNode(st.pop(), node);
+        ListNode node = new ListNode(nums[nums.length - 1]);
+
+        for (int i = nums.length - 2; i >= 0; i--) {
+            node = new ListNode(nums[i], node);
         }
 
         return node;
@@ -2617,6 +2617,19 @@ public class AlgorithmEasy {
         }
 
         return sum;
+    }
+
+    public static ListNode middleNode(ListNode head) {
+//        https://leetcode.com/problems/middle-of-the-linked-list/
+
+        List<ListNode> list = new ArrayList<>();
+
+        while (head != null) {
+            list.add(head);
+            head = head.next;
+        }
+
+        return list.get(list.size() / 2);
     }
 
     public static void main(String[] args) {
