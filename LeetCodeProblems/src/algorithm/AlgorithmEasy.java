@@ -2575,6 +2575,31 @@ public class AlgorithmEasy {
         return res;
     }
 
+    public static List<String> buildArray(int[] target, int n) {
+//        https://leetcode.com/problems/build-an-array-with-stack-operations/
+//        List<String> comm = buildArray(new int[]{1, 2}, 3);
+//        for (int i = 0; i < comm.size(); i++) {
+//            System.out.print(comm.get(i) + " ");
+//        }
+        
+        List<String> commands = new ArrayList<>();
+
+        int i = -1;
+        int iter = 0;
+
+        while (++i < target.length) {
+
+            while (++iter < target[i]) {
+                commands.add("Push");
+                commands.add("Pop");
+            }
+            commands.add("Push");
+        }
+
+        return commands;
+    }
+
     public static void main(String[] args) {
+
     }
 }
