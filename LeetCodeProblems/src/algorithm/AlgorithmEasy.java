@@ -2581,7 +2581,7 @@ public class AlgorithmEasy {
 //        for (int i = 0; i < comm.size(); i++) {
 //            System.out.print(comm.get(i) + " ");
 //        }
-        
+
         List<String> commands = new ArrayList<>();
 
         int i = -1;
@@ -2599,7 +2599,26 @@ public class AlgorithmEasy {
         return commands;
     }
 
-    public static void main(String[] args) {
+    public static int maximumUnits(int[][] boxTypes, int truckSize) {
+//        https://leetcode.com/problems/maximum-units-on-a-truck/
+//        System.out.println(maximumUnits(new int[][]{{5, 10}, {2, 5}, {4, 7}, {3, 9}}, 10));
 
+        int sum = 0;
+        Arrays.sort(boxTypes, Comparator.comparingDouble(o -> -o[1]));
+
+        for (int i = 0; i < boxTypes.length; i++) {
+            int boxcount = Math.min(boxTypes[i][0], truckSize);
+            truckSize -= boxcount;
+            sum += (boxcount * boxTypes[i][1]);
+
+            if (truckSize < 1) {
+                break;
+            }
+        }
+
+        return sum;
+    }
+
+    public static void main(String[] args) {
     }
 }
