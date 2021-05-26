@@ -2755,6 +2755,31 @@ public class AlgorithmEasy {
         return res;
     }
 
+    public static char findTheDifference(String s, String t) {
+//        https://leetcode.com/problems/find-the-difference/
+//        System.out.println(findTheDifference("ae", "aea"));
+
+        int c = 0;
+
+        int[] letters = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            letters[s.charAt(i) - 'a']--;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            letters[t.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < letters.length; i++) {
+            if (letters[i] > 0) {
+                c = i;
+                break;
+            }
+        }
+
+        return (char) ('a' + c);
+    }
+
     public static void main(String[] args) {
     }
 }
