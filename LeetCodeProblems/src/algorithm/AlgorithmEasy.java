@@ -2803,7 +2803,28 @@ public class AlgorithmEasy {
         return count;
     }
 
-    public static void main(String[] args) {
+    public static boolean isPowerOfTwo(int n) {
+//        https://leetcode.com/problems/power-of-two/
+//        System.out.println(isPowerOfTwo(0));
 
+        boolean res = true;
+
+        if (n < 1) {
+            return false;
+        }
+
+        while (n > 1) {
+            int b = n & 1;
+
+            if (b == 1) {
+                res = false;
+            }
+            n >>= 1;
+        }
+
+        return res;
+    }
+
+    public static void main(String[] args) {
     }
 }
