@@ -2818,11 +2818,19 @@ public class AlgorithmEasy {
 
             if (b == 1) {
                 res = false;
+                break;
             }
             n >>= 1;
         }
 
         return res;
+    }
+
+    public static boolean isPowerOfFour(int n) {
+//        https://leetcode.com/problems/power-of-four/
+//        System.out.println(isPowerOfFour(8));
+
+        return n > 0 && (n & (n - 1)) == 0 && (n & 0x55555555) != 0;
     }
 
     public static void main(String[] args) {
