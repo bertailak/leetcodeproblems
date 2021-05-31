@@ -2881,6 +2881,9 @@ public class AlgorithmEasy {
     }
 
     public static int islandPerimeter(int[][] grid) {
+//        https://leetcode.com/problems/island-perimeter/
+//        System.out.println(islandPerimeter(new int[][]{{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}}));
+
         int perimeter = 0;
 
         for (int i = 0; i < grid.length; i++) {
@@ -2920,6 +2923,5 @@ public class AlgorithmEasy {
     }
 
     public static void main(String[] args) {
-        System.out.println(islandPerimeter(new int[][]{{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}}));
     }
 }
