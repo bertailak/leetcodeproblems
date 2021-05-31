@@ -2833,6 +2833,53 @@ public class AlgorithmEasy {
         return n > 0 && (n & (n - 1)) == 0 && (n & 0x55555555) != 0;
     }
 
+    public static boolean checkZeroOnes(String s) {
+//        https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
+//        System.out.println(checkZeroOnes("01111110"));
+
+        int len0 = 0;
+        int len1 = 0;
+        int len0max = 0;
+        int len1max = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '0') {
+                len0++;
+            } else {
+                len0max = Math.max(len0max, len0);
+                len0 = 0;
+            }
+            if (s.charAt(i) == '1') {
+                len1++;
+            } else {
+                len1max = Math.max(len1max, len1);
+                len1 = 0;
+            }
+        }
+        len0max = Math.max(len0max, len0);
+        len1max = Math.max(len1max, len1);
+
+        return len0max < len1max;
+    }
+
+    public static boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
+//        https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/
+//        System.out.println(isSumEqual("aaa", "a", "aab"));
+
+        return isSumEqualWordSum(firstWord) + isSumEqualWordSum(secondWord) == isSumEqualWordSum(targetWord);
+    }
+
+    public static int isSumEqualWordSum(String word) {
+        int sum = 0;
+        int tenpow = 1;
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+            sum = sum + (word.charAt(i) - 'a') * tenpow;
+            tenpow *= 10;
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
     }
 }
