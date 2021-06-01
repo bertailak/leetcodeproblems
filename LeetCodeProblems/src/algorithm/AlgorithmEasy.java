@@ -2922,6 +2922,34 @@ public class AlgorithmEasy {
         return perimeter;
     }
 
+    public static int calPoints(String[] ops) {
+//        https://leetcode.com/problems/baseball-game/
+//        System.out.println(calPoints(new String[]{"5", "2", "C", "D", "+"}));
+
+        int sum = 0;
+        Stack<Integer> st = new Stack();
+        for (int i = 0; i < ops.length; i++) {
+            if (ops[i].equals("C")) {
+                st.pop();
+            } else if (ops[i].equals("D")) {
+                st.add(st.peek() * 2);
+            } else if (ops[i].equals("+")) {
+                int top = st.pop();
+                int lastsum = st.peek() + top;
+                st.add(top);
+                st.add(lastsum);
+            } else {
+                st.add(Integer.parseInt(ops[i]));
+            }
+        }
+
+        while (!st.isEmpty()) {
+            sum += st.pop();
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
     }
 }
