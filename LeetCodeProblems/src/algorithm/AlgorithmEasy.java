@@ -2950,6 +2950,28 @@ public class AlgorithmEasy {
         return sum;
     }
 
+    public static double average(int[] salary) {
+//        https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
+//        System.out.println(average(new int[]{4000, 3000, 1000, 2000}));
+        double sum = 0;
+        int indmin = 0;
+        int indmax = 0;
+
+        for (int i = 0; i < salary.length; i++) {
+            if (salary[i] < salary[indmin]) {
+                indmin = i;
+            }
+            if (salary[i] > salary[indmax]) {
+                indmax = i;
+            }
+            sum += salary[i];
+        }
+        sum -= salary[indmin];
+        sum -= salary[indmax];
+
+        return sum / (salary.length - 2);
+    }
+
     public static void main(String[] args) {
     }
 }
