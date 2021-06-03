@@ -2953,6 +2953,7 @@ public class AlgorithmEasy {
     public static double average(int[] salary) {
 //        https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
 //        System.out.println(average(new int[]{4000, 3000, 1000, 2000}));
+
         double sum = 0;
         int indmin = 0;
         int indmax = 0;
@@ -2970,6 +2971,50 @@ public class AlgorithmEasy {
         sum -= salary[indmax];
 
         return sum / (salary.length - 2);
+    }
+
+    public static int projectionArea(int[][] grid) {
+//        https://leetcode.com/problems/projection-area-of-3d-shapes/
+//        System.out.println(projectionArea(new int[][]{{1, 2}, {3, 4}}));
+
+        int area = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+
+            int indMaxHor = 0;
+            int indMaxVer = 0;
+
+            for (int j = 0; j < grid.length; j++) {
+                if (grid[i][j] > 0) {
+                    area++;
+                }
+                if (grid[i][j] > grid[i][indMaxHor]) {
+                    indMaxHor = j;
+                }
+                if (grid[j][i] > grid[indMaxVer][i]) {
+                    indMaxVer = j;
+                }
+            }
+            area += grid[i][indMaxHor];
+            area += grid[indMaxVer][i];
+        }
+
+        return area;
+    }
+
+    public static int mySqrt(int x) {
+//        https://leetcode.com/problems/sqrtx/
+//        System.out.println(mySqrt(2147395600));
+
+        int root = 0;
+        while (true) {
+            if (root * root > x || root > 46340) {
+                break;
+            }
+            root++;
+        }
+
+        return root - 1;
     }
 
     public static void main(String[] args) {
