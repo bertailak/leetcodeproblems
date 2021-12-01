@@ -10,43 +10,6 @@ import java.util.stream.Stream;
  */
 public class AlgorithmEasy {
 
-    public static TreeNode insert_Recursive(TreeNode root, Object key) {
-        if (root == null) {
-            root = new TreeNode((int) key);
-            return root;
-        }
-        if ((int) key < root.val) {
-            root.left = insert_Recursive(root.left, key);
-        } else if ((int) key > (int) root.val) {
-            root.right = insert_Recursive(root.right, key);
-        }
-        return root;
-    }
-
-    public static TreeNode insertByOrder(int index, Object[] keys) {
-        if (index < keys.length && keys[index] != null) {
-            TreeNode root = new TreeNode((int) keys[index]);
-            root.left = insertByOrder(index * 2 + 1, keys);
-            root.right = insertByOrder(index * 2 + 2, keys);
-            return root;
-        }
-        return null;
-    }
-
-    public static ListNode insertByOrder(int[] nums) {
-        if (nums.length == 0) {
-            return null;
-        }
-
-        ListNode node = new ListNode(nums[nums.length - 1]);
-
-        for (int i = nums.length - 2; i >= 0; i--) {
-            node = new ListNode(nums[i], node);
-        }
-
-        return node;
-    }
-
     static ArrayList<Integer> tlist = new ArrayList<>();
 
     public static void getSortedList(TreeNode node) {
@@ -56,118 +19,6 @@ public class AlgorithmEasy {
         tlist.add(node.val);
         if (node.right != null) {
             getSortedList(node.right);
-        }
-    }
-
-    public static void printTree(TreeNode root) {
-        Queue<TreeNode> s = new LinkedList<>();
-        HashMap<Integer, TreeNode> m = new HashMap<>();
-
-        int ind = 0;
-        s.add(root);
-        m.put(ind++, root);
-
-        while (!s.isEmpty()) {
-            TreeNode node = s.poll();
-            if (node == null) {
-                ind += 2;
-            } else {
-                s.add(node.left);
-                s.add(node.right);
-                m.put(ind++, node.left);
-                m.put(ind++, node.right);
-            }
-        }
-        Object[] obj = new Object[ind];
-        for (Map.Entry<Integer, TreeNode> entry : m.entrySet()) {
-            int key = (int) entry.getKey();
-            TreeNode value = entry.getValue();
-            if (value != null) {
-                obj[key] = value.val;
-            }
-        }
-        int j = obj.length - 1;
-        while (j > 0) {
-            if (obj[j] == null) {
-                j--;
-            } else {
-                break;
-            }
-        }
-
-        for (int i = 0; i <= j; i++) {
-            System.out.print(obj[i] + ", ");
-        }
-        System.out.println();
-    }
-
-    public static class TreeNode {
-
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-
-        TreeNode getMin() {
-            if (this.left != null) {
-                return getMin(this.left);
-            }
-            return this;
-        }
-
-        TreeNode getMin(TreeNode node) {
-            if (node.left != null) {
-                return getMin(node.left);
-            }
-            return node;
-        }
-    }
-
-    public static class Node {
-
-        public int val;
-        public List<Node> children;
-
-        public Node() {
-        }
-
-        public Node(int _val) {
-            val = _val;
-        }
-
-        public Node(int _val, List<Node> _children) {
-            val = _val;
-            children = _children;
-        }
-    };
-
-    public static class ListNode {
-
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
         }
     }
 
@@ -1198,7 +1049,7 @@ public class AlgorithmEasy {
         if (res == null) {
             res = new TreeNode(root.val);
         } else {
-            res = insert_Recursive(res, root.val);
+            res = Common.insert_Recursive(res, root.val);
         }
         if (root.right != null) {
             res = increasingBST(root.right, res);
@@ -1474,10 +1325,10 @@ public class AlgorithmEasy {
 
     public static TreeNode sortedArrayToBSTrec(TreeNode node, int[] nums, int start, int end) {
         if (start == end) {
-            insert_Recursive(node, nums[start]);
+            Common.insert_Recursive(node, nums[start]);
         } else {
             int mid = (start + end) / 2;
-            insert_Recursive(node, nums[mid]);
+            Common.insert_Recursive(node, nums[mid]);
             if (start < mid) {
                 sortedArrayToBSTrec(node, nums, start, mid - 1);
             }
@@ -1955,8 +1806,8 @@ public class AlgorithmEasy {
                 } else {
                     q.add(node.left);
                     q.add(node.right);
-                    insert_Recursive(t, node.left.val);
-                    insert_Recursive(t, node.right.val);
+                    Common.insert_Recursive(t, node.left.val);
+                    Common.insert_Recursive(t, node.right.val);
                 }
             }
             tlist = new ArrayList<>();

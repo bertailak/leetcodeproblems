@@ -63,6 +63,6 @@ public class AlgorithmMedium {
     }
 
     public static void main(String[] args) {
-
+        
     }
 }
