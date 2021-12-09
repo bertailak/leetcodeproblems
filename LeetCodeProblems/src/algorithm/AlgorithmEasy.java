@@ -2931,6 +2931,28 @@ public class AlgorithmEasy {
         return result;
     }
 
+    public static List<Integer> targetIndices(int[] nums, int target) {
+//        https://leetcode.com/problems/find-target-indices-after-sorting-array/
+
+        int count = 0;
+        int smallerCount = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                count++;
+            }
+            if (nums[i] < target) {
+                smallerCount++;
+            }
+        }
+
+        List<Integer> list = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            list.add(smallerCount++);
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
     }
 }
