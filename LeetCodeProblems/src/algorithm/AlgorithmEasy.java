@@ -2916,6 +2916,21 @@ public class AlgorithmEasy {
         return ans;
     }
 
+    public static int finalValueAfterOperations(String[] operations) {
+//        https://leetcode.com/problems/final-value-of-variable-after-performing-operations/
+        int result = 0;
+
+        for (int i = 0; i < operations.length; i++) {
+            if (operations[i].charAt(1) == '+') {
+                result++;
+            } else {
+                result--;
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
     }
 }
