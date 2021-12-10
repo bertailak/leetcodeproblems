@@ -2995,6 +2995,13 @@ public class AlgorithmEasy {
         return count;
     }
 
+    public static int maxProductDifference(int[] nums) {
+//        https://leetcode.com/problems/maximum-product-difference-between-two-pairs/        
+
+        Arrays.sort(nums);
+        return nums[nums.length - 1] * nums[nums.length - 2] - nums[1] * nums[0];
+    }
+
     public static void main(String[] args) {
     }
 }
