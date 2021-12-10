@@ -2981,6 +2981,20 @@ public class AlgorithmEasy {
         }
     }
 
+    public static int minMovesToSeat(int[] seats, int[] students) {
+//        https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
+
+        int count = 0;
+        Arrays.sort(seats);
+        Arrays.sort(students);
+
+        for (int i = 0; i < students.length; i++) {
+            count += Math.abs(students[i] - seats[i]);
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
     }
 }
