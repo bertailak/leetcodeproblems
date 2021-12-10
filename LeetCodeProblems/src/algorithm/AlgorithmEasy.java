@@ -2953,6 +2953,24 @@ public class AlgorithmEasy {
         return list;
     }
 
+    public static int countKDifference(int[] nums, int k) {
+//        https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/
+
+        Arrays.sort(nums);
+
+        int result = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                int dif = Math.abs(nums[i] - nums[j]);
+                if (dif == k) {
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
     }
 }
