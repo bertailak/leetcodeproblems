@@ -3040,6 +3040,27 @@ public class AlgorithmEasy {
         return count;
     }
 
+    public static String reversePrefix(String word, char ch) {
+//        https://leetcode.com/problems/reverse-prefix-of-word/
+
+        StringBuilder st = new StringBuilder();
+
+        int i = -1;
+        while (++i < word.length()) {
+            st.append(word.charAt(i));
+            if (word.charAt(i) == ch) {
+                st = st.reverse();
+                break;
+            }
+        }
+
+        while (++i < word.length()) {
+            st.append(word.charAt(i));
+        }
+
+        return st.toString();
+    }
+
     public static void main(String[] args) {
     }
 }
