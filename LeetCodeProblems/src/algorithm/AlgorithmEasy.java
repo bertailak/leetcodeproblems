@@ -3086,6 +3086,25 @@ public class AlgorithmEasy {
         return count;
     }
 
+    public static boolean areOccurrencesEqual(String s) {
+//        https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
+
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+
+        List<Integer> list = new ArrayList<>(map.values());
+        for (int i = 1; i < list.size(); i++) {
+            int val = list.get(i);
+            if (list.get(0) != val) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
     }
 }
