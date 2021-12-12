@@ -3105,6 +3105,18 @@ public class AlgorithmEasy {
         return true;
     }
 
+    public static int smallestEqual(int[] nums) {
+//        https://leetcode.com/problems/smallest-index-with-equal-value/
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == i % 10) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
     }
 }
