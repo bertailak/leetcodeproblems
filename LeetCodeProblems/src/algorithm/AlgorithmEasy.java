@@ -3061,6 +3061,31 @@ public class AlgorithmEasy {
         return st.toString();
     }
 
+    public static int countPoints(String rings) {
+//        https://leetcode.com/problems/rings-and-rods/
+
+        boolean[][] rods = new boolean[10][3];
+        int count = 0;
+
+        for (int i = 0; i < rings.length() / 2; i++) {
+            if (rings.charAt(2 * i) == 'R') {
+                rods[rings.charAt(2 * i + 1) - '0'][0] = true;
+            } else if (rings.charAt(2 * i) == 'G') {
+                rods[rings.charAt(2 * i + 1) - '0'][1] = true;
+            } else if (rings.charAt(2 * i) == 'B') {
+                rods[rings.charAt(2 * i + 1) - '0'][2] = true;
+            }
+        }
+
+        for (int i = 0; i < rods.length; i++) {
+            if (rods[i][0] && rods[i][1] && rods[i][2]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
     }
 }
