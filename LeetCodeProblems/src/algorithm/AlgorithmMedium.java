@@ -78,7 +78,7 @@ public class AlgorithmMedium {
         }
         return res;
     }
-
+    
     public static void main(String[] args) {
 
     }
