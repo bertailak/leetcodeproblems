@@ -3202,6 +3202,8 @@ public class AlgorithmEasy {
     }
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
+//        https://leetcode.com/problems/merge-sorted-array/
+
         int i = m - 1;
         int j = n - 1;
 
@@ -3221,11 +3223,24 @@ public class AlgorithmEasy {
     }
 
     public static int removeElement(int[] nums, int val) {
+//        https://leetcode.com/problems/remove-element/
+
         int newLength = 0;
-        int skip = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == val) {
-                skip++;
+            } else {
+                nums[newLength++] = nums[i];
+            }
+        }
+        return newLength;
+    }
+
+    public static int removeDuplicates(int[] nums) {
+//        https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+
+        int newLength = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[newLength - 1]) {
             } else {
                 nums[newLength++] = nums[i];
             }
