@@ -1823,7 +1823,7 @@ public class AlgorithmEasy {
     }
 
     public static int[] sortedSquares(int[] nums) {
-//        https://leetcode.com/problemset/algorithms/?difficulty=Easy&status=Todo
+//        https://leetcode.com/problems/squares-of-a-sorted-array/
 //        int[] a = sortedSquares(new int[]{-4,-1,0,3,10});
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.print(a[i]+" ");
@@ -3199,6 +3199,38 @@ public class AlgorithmEasy {
         }
 
         return false;
+    }
+
+    public static void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;
+        int j = n - 1;
+
+        int length = nums1.length - 1;
+
+        while (i >= 0 || j >= 0) {
+            if (j < 0) {
+                nums1[length--] = nums1[i--];
+            } else if (i < 0) {
+                nums1[length--] = nums2[j--];
+            } else if (nums1[i] > nums2[j]) {
+                nums1[length--] = nums1[i--];
+            } else {
+                nums1[length--] = nums2[j--];
+            }
+        }
+    }
+
+    public static int removeElement(int[] nums, int val) {
+        int newLength = 0;
+        int skip = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == val) {
+                skip++;
+            } else {
+                nums[newLength++] = nums[i];
+            }
+        }
+        return newLength;
     }
 
     public static void main(String[] args) {
