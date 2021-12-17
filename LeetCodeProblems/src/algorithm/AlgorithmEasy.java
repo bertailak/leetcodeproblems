@@ -3201,6 +3201,41 @@ public class AlgorithmEasy {
         return false;
     }
 
+    public static void duplicateZeros(int[] arr) {
+//        https://leetcode.com/problems/duplicate-zeros/
+
+        int zeros = 0;
+        int length = arr.length - 1;
+
+        for (int i = 0; i < arr.length - zeros; i++) {
+            if (arr[i] == 0) {
+                if (i == length - zeros) {
+                    // For this zero we just copy it without duplication.
+                    arr[length] = 0;
+                    length -= 1;
+                    break;
+                }
+                zeros++;
+            }
+        }
+
+        int last = length - zeros;
+
+        for (int i = last; i >= 0; i--) {
+            if (arr[i] == 0) {
+                arr[length--] = arr[i];
+                arr[length--] = arr[i];
+                zeros--;
+            } else {
+                arr[length--] = arr[i];
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
 //        https://leetcode.com/problems/merge-sorted-array/
 
@@ -3249,5 +3284,8 @@ public class AlgorithmEasy {
     }
 
     public static void main(String[] args) {
+//        duplicateZeros(new int[]{1, 2, 3});
+//        duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
+        duplicateZeros(new int[]{8, 4, 5, 0, 0, 0, 0, 7});
     }
 }
