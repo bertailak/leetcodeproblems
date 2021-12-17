@@ -3283,9 +3283,22 @@ public class AlgorithmEasy {
         return newLength;
     }
 
+    public static boolean checkIfExist(int[] arr) {
+//        https://leetcode.com/problems/check-if-n-and-its-double-exist/
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            if (set.contains(2 * arr[i]) || set.contains(arr[i] / 2) && arr[i] % 2 == 0) {
+                return true;
+            } else {
+                set.add(arr[i]);
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
-//        duplicateZeros(new int[]{1, 2, 3});
-//        duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
-        duplicateZeros(new int[]{8, 4, 5, 0, 0, 0, 0, 7});
     }
 }
