@@ -3299,6 +3299,50 @@ public class AlgorithmEasy {
         return false;
     }
 
+    public static boolean validMountainArray(int[] arr) {
+//        https://leetcode.com/problems/valid-mountain-array/
+
+//        boolean isInc = true;
+//        boolean hasInc = false;
+//        boolean hasDec = false;
+//
+//        for (int i = 0; i < arr.length - 1; i++) {
+//            if (isInc) {
+//                if (arr[i] < arr[i + 1]) {
+//                    hasInc = true;
+//                } else {
+//                    isInc = false;
+//                    if (arr[i] > arr[i + 1]) {
+//                        hasDec = true;
+//                    }
+//                }
+//            } else {
+//                if (arr[i] > arr[i + 1]) {
+//                    hasDec = true;
+//                } else {
+//                    return false;
+//                }
+//            }
+//            if (arr[i] == arr[i + 1]) {
+//                return false;
+//            }
+//        }
+//
+//        return hasInc && hasDec;
+        int i = 0;
+        int N = arr.length - 1;
+
+        while (i < N) {
+            if(arr[i]<arr[i+1]) i++;
+            if(arr[N-1]<arr[N]) N--;
+        }
+
+        return i < arr.length;
+    }
+
     public static void main(String[] args) {
+        System.out.println(validMountainArray(new int[]{0, 1, 2, 1, 2}));
+//        System.out.println(validMountainArray(new int[]{2, 1}));
+//        System.out.println(validMountainArray(new int[]{2}));
     }
 }

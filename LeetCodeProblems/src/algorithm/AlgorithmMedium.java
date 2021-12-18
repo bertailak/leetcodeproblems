@@ -78,8 +78,43 @@ public class AlgorithmMedium {
         }
         return res;
     }
-    
-    public static void main(String[] args) {
 
+    public static int maxProduct(int[] nums) {
+//        https://leetcode.com/problems/maximum-product-subarray/
+
+        int max = nums[0];
+        int product = nums[0];
+
+        for (int i = 0; i < nums.length; i++) {
+            product = nums[i];
+            max = Math.max(max, product);
+            for (int j = i + 1; j < nums.length; j++) {
+                product *= nums[j];
+                max = Math.max(max, product);
+            }
+        }
+
+        return max;
+    }
+
+    public static int findMin(int[] nums) {
+//        https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+
+        int i = 0;
+        int j = nums.length - 1;
+
+        while (i < j) {
+            int mid = (i + j) / 2;
+            if (nums[j] < nums[mid]) {
+                i = mid + 1;
+            } else {
+                j = mid;
+            }
+        }
+
+        return nums[i];
+    }
+
+    public static void main(String[] args) {
     }
 }
