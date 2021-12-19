@@ -115,6 +115,50 @@ public class AlgorithmMedium {
         return nums[i];
     }
 
+    public static int search(int[] nums, int target) {
+//        https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+        int i = 0;
+        int j = nums.length - 1;
+
+        while (i < j) {
+            int mid = (i + j) / 2;
+            if (nums[j] < nums[mid]) {
+                i = mid + 1;
+            } else {
+                j = mid;
+            }
+        }
+
+        if (target == nums[i]) {
+            return i;
+        }
+
+        if (nums[i] <= target && target <= nums[nums.length - 1]) {
+            j = nums.length - 1;
+        } else {
+            j = i - 1;
+            i = 0;
+        }
+
+        while (i <= j) {
+            int mid = i + (j - i) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (target > nums[mid]) {
+                i = mid + 1;
+            } else {
+                j = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
+        System.out.println(search(new int[]{1, 3, 5}, 3));
+        System.out.println(search(new int[]{4, 5, 6, 7, 0, 1, 2}, 0));
+//        System.out.println(search(new int[]{3, 1, 2}, 3));
+//        System.out.println(search(new int[]{2, 3, 1}, 3));
     }
 }
