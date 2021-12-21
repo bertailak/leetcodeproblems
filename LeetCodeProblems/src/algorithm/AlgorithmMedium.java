@@ -195,6 +195,26 @@ public class AlgorithmMedium {
         return res;
     }
 
+    public static int maxArea(int[] height) {
+//        https://leetcode.com/problems/container-with-most-water/
+
+        int volume = 0;
+        int i = 0;
+        int j = height.length - 1;
+
+        while (i < j) {
+            volume = Math.max(volume, Math.min(height[i], height[j]) * (j - i));
+            if (height[i] < height[j]) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+
+        return volume;
+    }
+
     public static void main(String[] args) {
+        System.out.println(maxArea(new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7}));
     }
 }
