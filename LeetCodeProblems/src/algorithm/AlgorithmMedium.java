@@ -1,5 +1,9 @@
 package algorithm;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author s_bertailak
@@ -155,10 +159,42 @@ public class AlgorithmMedium {
         return -1;
     }
 
+    public static List<List<Integer>> threeSum(int[] nums) {
+//        https://leetcode.com/problems/3sum/
+
+        Arrays.sort(nums);
+        List<List<Integer>> res = new LinkedList<>();
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+                int lo = i + 1, hi = nums.length - 1, sum = 0 - nums[i];
+                while (lo < hi) {
+                    if (nums[lo] + nums[hi] == sum) {
+                        res.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
+                        while (lo < hi && nums[lo] == nums[lo + 1]) {
+                            lo++;
+                        }
+                        while (lo < hi && nums[hi] == nums[hi - 1]) {
+                            hi--;
+                        }
+                        lo++;
+                        hi--;
+                    } else if (nums[lo] + nums[hi] < sum) {
+                        while (lo < hi && nums[lo] == nums[lo + 1]) {
+                            lo++;
+                        }
+                        lo++;
+                    } else {
+                        while (lo < hi && nums[hi] == nums[hi - 1]) {
+                            hi--;
+                        }
+                        hi--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
-        System.out.println(search(new int[]{1, 3, 5}, 3));
-        System.out.println(search(new int[]{4, 5, 6, 7, 0, 1, 2}, 0));
-//        System.out.println(search(new int[]{3, 1, 2}, 3));
-//        System.out.println(search(new int[]{2, 3, 1}, 3));
     }
 }
