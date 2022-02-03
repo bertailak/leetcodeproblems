@@ -1,8 +1,11 @@
 package algorithm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -214,7 +217,22 @@ public class AlgorithmMedium {
         return volume;
     }
 
+    public static int rob(int[] nums) {
+//        https://leetcode.com/problems/house-robber/
+
+        int[] sums = new int[nums.length];
+
+        for (int i = 0; i < sums.length; i++) {
+            if (i < 2) {
+                sums[i] = nums[i];
+            } else {
+                sums[i] = nums[i] + Math.max((i - 2 >= 0) ? sums[i - 2] : 0, (i - 3 >= 0) ? sums[i - 3] : 0);
+            }
+        }
+
+        return Math.max(sums[sums.length - 1], (sums.length - 2 >= 0) ? sums[sums.length - 2] : 0);
+    }
+
     public static void main(String[] args) {
-        System.out.println(maxArea(new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7}));
     }
 }
