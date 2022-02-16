@@ -336,6 +336,32 @@ public class AlgorithmMedium {
         return dp[nums.length - 1];
     }
 
+    public static void setZeroes(int[][] matrix) {
+//        https://leetcode.com/problems/set-matrix-zeroes/
+
+        List<List<Integer>> list = new ArrayList<>();
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 0) {
+                    List<Integer> position = new ArrayList<>();
+                    position.add(i);
+                    position.add(j);
+                    list.add(position);
+                }
+            }
+        }
+        for (List<Integer> position : list) {
+            for (int i = 0; i < matrix.length; i++) {
+                matrix[i][position.get(1)] = 0;
+            }
+            for (int i = 0; i < matrix[0].length; i++) {
+                matrix[position.get(0)][i] = 0;
+            }
+        }
+    }
+
     public static void main(String[] args) {
+        setZeroes(new int[][]{{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}});
     }
 }
