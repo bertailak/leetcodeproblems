@@ -311,7 +311,31 @@ public class AlgorithmMedium {
         return path[m - 1][n - 1];
     }
 
+    public static boolean canJump(int[] nums) {
+//        https://leetcode.com/problems/jump-game/
+        if (nums.length == 1) {
+            return true;
+        }
+        if (nums[0] == 0) {
+            return false;
+        }
+
+        boolean[] dp = new boolean[nums.length];
+
+        int dpIndex = 0;
+        dp[dpIndex++] = true;
+
+        for (int i = 0; i < nums.length - 1 && dpIndex < nums.length; i++) {
+            while (i < dpIndex && dpIndex <= i + nums[i] && dpIndex < nums.length) {
+                dp[dpIndex] = true;
+                System.out.println(i + ": " + dpIndex + ": " + dp[dpIndex]);
+                dpIndex++;
+            }
+        }
+
+        return dp[nums.length - 1];
+    }
+
     public static void main(String[] args) {
-        System.out.println(uniquePaths(3, 7));
     }
 }
