@@ -234,8 +234,8 @@ public class AlgorithmMedium {
 
         return Math.max(sums[sums.length - 1], (sums.length - 2 >= 0) ? sums[sums.length - 2] : 0);
     }
-    
-        public static int minimumOperations(int[] nums) {
+
+    public static int minimumOperations(int[] nums) {
         //https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/
 
         int count = 0;
@@ -291,6 +291,27 @@ public class AlgorithmMedium {
         return count;
     }
 
+    public static int uniquePaths(int m, int n) {
+//        https://leetcode.com/problems/unique-paths/
+        int[][] path = new int[m][n];
+
+        for (int i = 0; i < m; i++) {
+            path[i][0] = 1;
+        }
+        for (int i = 0; i < n; i++) {
+            path[0][i] = 1;
+        }
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                path[i][j] = path[i - 1][j] + path[i][j - 1];
+            }
+        }
+
+        return path[m - 1][n - 1];
+    }
+
     public static void main(String[] args) {
+        System.out.println(uniquePaths(3, 7));
     }
 }
