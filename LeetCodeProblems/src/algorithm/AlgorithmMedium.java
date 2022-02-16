@@ -2,9 +2,11 @@ package algorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -231,6 +233,62 @@ public class AlgorithmMedium {
         }
 
         return Math.max(sums[sums.length - 1], (sums.length - 2 >= 0) ? sums[sums.length - 2] : 0);
+    }
+    
+        public static int minimumOperations(int[] nums) {
+        //https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/
+
+        int count = 0;
+        if (nums.length < 2) {
+            return count;
+        }
+
+        HashMap<Integer, Integer> map0 = new HashMap<>();
+        HashMap<Integer, Integer> map1 = new HashMap<>();
+
+        for (int i = 0; i < nums.length / 2 + 1; i++) {
+            if (i * 2 < nums.length) {
+                map0.put(nums[i * 2], (map0.getOrDefault(nums[i * 2], 0) + 1));
+            }
+            if ((i * 2 + 1) < nums.length) {
+                map1.put(nums[i * 2 + 1], (map1.getOrDefault(nums[i * 2 + 1], 0) + 1));
+            }
+        }
+
+        int max0 = nums[0];
+        int max1 = nums[1];
+        for (Map.Entry<Integer, Integer> entry : map0.entrySet()) {
+            if (map0.get(max0) < entry.getValue()) {
+                max0 = entry.getKey();
+            }
+        }
+        for (Map.Entry<Integer, Integer> entry : map1.entrySet()) {
+            if (map1.get(max1) < entry.getValue()) {
+                max1 = entry.getKey();
+            }
+        }
+
+        if (max0 == max1) {
+            if (map0.get(max0) > map1.get(max1)) {
+                max1 = 0;
+                for (Map.Entry<Integer, Integer> entry : map1.entrySet()) {
+                    if (max0 != entry.getKey() && map1.getOrDefault(max1, 0) < entry.getValue()) {
+                        max1 = entry.getKey();
+                    }
+                }
+            } else {
+                max0 = 0;
+                for (Map.Entry<Integer, Integer> entry : map0.entrySet()) {
+                    if (max1 != entry.getKey() && map0.getOrDefault(max0, 0) < entry.getValue()) {
+                        max0 = entry.getKey();
+                    }
+                }
+            }
+        }
+
+        count = nums.length - map0.getOrDefault(max0, 0) - map1.getOrDefault(max1, 0);
+
+        return count;
     }
 
     public static void main(String[] args) {

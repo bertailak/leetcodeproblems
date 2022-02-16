@@ -3333,16 +3333,33 @@ public class AlgorithmEasy {
         int N = arr.length - 1;
 
         while (i < N) {
-            if(arr[i]<arr[i+1]) i++;
-            if(arr[N-1]<arr[N]) N--;
+            if (arr[i] < arr[i + 1]) {
+                i++;
+            }
+            if (arr[N - 1] < arr[N]) {
+                N--;
+            }
         }
 
         return i < arr.length;
     }
 
+    public static int countOperations(int num1, int num2) {
+        //https://leetcode.com/problems/count-operations-to-obtain-zero/
+        int count = 0;
+
+        while (num1 != 0 && num2 != 0) {
+            if (num1 > num2) {
+                num1 -= num2;
+            } else {
+                num2 -= num1;
+            }
+            count++;
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
-        System.out.println(validMountainArray(new int[]{0, 1, 2, 1, 2}));
-//        System.out.println(validMountainArray(new int[]{2, 1}));
-//        System.out.println(validMountainArray(new int[]{2}));
     }
 }
