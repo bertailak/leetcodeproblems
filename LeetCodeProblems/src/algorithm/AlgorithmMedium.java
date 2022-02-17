@@ -397,6 +397,21 @@ public class AlgorithmMedium {
         return result;
     }
 
+    public static void rotate(int[][] matrix) {
+//        https://leetcode.com/problems/rotate-image/
+        
+        for (int i = 0; i < matrix.length / 2; i++) {
+            int[] current = Arrays.copyOf(matrix[i], matrix[0].length);
+
+            for (int j = i + 1; j < current.length - i; j++) {
+                matrix[i][current.length - 1 - j] = matrix[j][i];
+                matrix[j][i] = matrix[current.length - 1 - i][j];
+                matrix[current.length - 1 - i][j] = matrix[current.length - 1 - j][current.length - 1 - i];
+                matrix[current.length - 1 - j][current.length - 1 - i] = current[current.length - 1 - j];
+            }
+        }
+    }
+
     public static void main(String[] args) {
     }
 }
