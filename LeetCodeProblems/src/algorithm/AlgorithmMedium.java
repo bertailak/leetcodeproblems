@@ -361,7 +361,42 @@ public class AlgorithmMedium {
         }
     }
 
+    public static List<Integer> spiralOrder(int[][] matrix) {
+//        https://leetcode.com/problems/spiral-matrix/
+
+        List<Integer> result = new ArrayList<>();
+
+        int columnStart = 0;
+        int rowStart = 0;
+        int columnEnd = matrix[0].length - 1;
+        int rowEnd = matrix.length - 1;
+
+        while (columnStart <= columnEnd && rowStart <= rowEnd) {
+
+            for (int i = columnStart; i <= columnEnd; i++) {
+                result.add(matrix[rowStart][i]);
+            }
+
+            for (int i = rowStart + 1; i <= rowEnd; i++) {
+                result.add(matrix[i][columnEnd]);
+            }
+
+            for (int i = columnEnd - 1; i >= columnStart && rowStart < rowEnd; i--) {
+                result.add(matrix[rowEnd][i]);
+            }
+
+            for (int i = rowEnd - 1; i > rowStart && columnStart < columnEnd; i--) {
+                result.add(matrix[i][columnStart]);
+            }
+            columnStart++;
+            rowStart++;
+            rowEnd--;
+            columnEnd--;
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
-        setZeroes(new int[][]{{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}});
     }
 }
