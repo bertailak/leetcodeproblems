@@ -417,6 +417,27 @@ public class AlgorithmMedium {
         return steps[n];
     }
 
+    public static int lengthOfLongestSubstring(String s) {
+//        https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+        int length = 0;
+        List<Character> list = new ArrayList<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (list.contains(s.charAt(i))) {
+                int ind = list.indexOf(s.charAt(i));
+
+                while (ind-- >= 0) {
+                    list.remove(0);
+                }
+            }
+            list.add(s.charAt(i));
+            length = Math.max(length, list.size());
+        }
+
+        return length;
+    }
+
     public static void main(String[] args) {
     }
 }
