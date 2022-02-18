@@ -397,6 +397,26 @@ public class AlgorithmMedium {
         return result;
     }
 
+    public static int climbStairs(int n) {
+//        https://leetcode.com/problems/climbing-stairs/
+
+        if (n == 1) {
+            return 1;
+        }
+
+        int[] steps = new int[n + 1];
+        steps[0] = 1;
+
+        for (int i = 1; i < steps.length; i++) {
+            steps[i] = steps[i - 1];
+            if (i - 2 >= 0) {
+                steps[i] += steps[i - 2];
+            }
+        }
+
+        return steps[n];
+    }
+
     public static void main(String[] args) {
     }
 }
