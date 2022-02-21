@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -399,7 +400,7 @@ public class AlgorithmMedium {
 
     public static void rotate(int[][] matrix) {
 //        https://leetcode.com/problems/rotate-image/
-        
+
         for (int i = 0; i < matrix.length / 2; i++) {
             int[] current = Arrays.copyOf(matrix[i], matrix[0].length);
 
@@ -412,6 +413,66 @@ public class AlgorithmMedium {
         }
     }
 
+    public static ListNode mergeNodes(ListNode head) {
+//        https://leetcode.com/problems/merge-nodes-in-between-zeros/
+
+        int sum = 0;
+
+        List<Integer> list = new ArrayList<>();
+
+        while (head != null) {
+            sum += head.val;
+            if (head.val == 0 && sum != 0) {
+                list.add(sum);
+                sum = 0;
+            }
+            head = head.next;
+        }
+        if (sum != 0) {
+            list.add(sum);
+        }
+
+        ListNode nodes = new ListNode(list.get(list.size() - 1));
+        for (int i = list.size() - 2; i >= 0; i--) {
+            nodes = new ListNode(list.get(i), nodes);
+        }
+
+        return nodes;
+    }
+
+    public static String repeatLimitedString(String s, int repeatLimit) {
+//        https://leetcode.com/problems/construct-string-with-repeat-limit/
+
+        StringBuilder sb = new StringBuilder();
+
+        int[] alphabet = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            alphabet[s.charAt(i) - 'a']++;
+        }
+
+        int index = alphabet.length - 1;
+
+        while (index >= 0) {
+            if (alphabet[index] > 0
+                    && (sb.length() < repeatLimit
+                    || (sb.length() >= repeatLimit
+                    && ((sb.subSequence(sb.length() - repeatLimit, sb.length()).chars().distinct().count() > 1)
+                    || (sb.charAt(sb.length() - 1) != ('a' + index)))))) {
+
+                sb.append((char) ('a' + index));
+                alphabet[index]--;
+                index = alphabet.length - 1;
+            } else {
+                index--;
+            }
+
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
+        System.out.println(repeatLimitedString("aababab", 2));
     }
 }

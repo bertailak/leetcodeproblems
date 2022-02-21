@@ -3360,6 +3360,24 @@ public class AlgorithmEasy {
         return count;
     }
 
+    public static int countEven(int num) {
+//        https://leetcode.com/problems/count-integers-with-even-digit-sum/
+
+        int sum = 0;
+        int n = num;
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        if (sum % 2 == 0) {
+            sum = num / 2;
+        } else {
+            sum = (num - 1) / 2;
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
     }
 }
