@@ -3431,6 +3431,23 @@ public class AlgorithmEasy {
         return st.empty();
     }
 
+    public static boolean isPalindrome(String s) {
+//        https://leetcode.com/problems/valid-palindrome/        
+
+        s = s.toLowerCase();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+            if ((s.charAt(i) >= 'a' && s.charAt(i) <= 'z')
+                    || (s.charAt(i) >= '0' && s.charAt(i) <= '9')) {
+                sb.append(s.charAt(i));
+            }
+        }
+
+        return sb.toString().equals(sb.reverse().toString());
+    }
+
     public static void main(String[] args) {
     }
 }
