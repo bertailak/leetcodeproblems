@@ -1,5 +1,6 @@
 package algorithm;
 
+import com.sun.source.tree.BreakTree;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -533,6 +534,71 @@ public class AlgorithmMedium {
         }
 
         return maxLength;
+    }
+
+    public static int[][] insert(int[][] intervals, int[] newInterval) {
+//        https://leetcode.com/problems/insert-interval/
+
+        List<List<Integer>> list = new ArrayList<>();
+
+        if (intervals.length == 0) {
+            List<Integer> l = new ArrayList<>();
+            l.add(newInterval[0]);
+            l.add(newInterval[1]);
+            list.add(l);
+        }
+
+        for (int i = 0; i < intervals.length; i++) {
+            if (intervals[i][1] < newInterval[0] || intervals[i][0] > newInterval[1]) {
+
+                List<Integer> l = new ArrayList<>();
+                l.add(intervals[i][0]);
+                l.add(intervals[i][1]);
+                list.add(l);
+
+            } else {
+
+                List<Integer> l = new ArrayList<>();
+                l.add(intervals[i][0]);
+                l.add(Math.max(intervals[i][1], newInterval[1]));
+
+                if (list.size() == 0 || intervals[i][0] <= newInterval[0]) {
+                    list.add(l);
+                } else if (list.size() > 0 && list.get(list.size() - 1).get(0) <= newInterval[0] && list.get(list.size() - 1).get(1) >= newInterval[0]) {
+                    list.get(list.size() - 1).set(1, Math.max(intervals[i][1], newInterval[1]));
+                }
+
+            }
+        }
+
+        int[][] result = new int[list.size()][2];
+
+        for (int i = 0; i < list.size(); i++) {
+            result[i][0] = list.get(i).get(0);
+            result[i][1] = list.get(i).get(1);
+        }
+
+        return result;
+    }
+
+    public static int minSteps(String s, String t) {
+//        https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/
+
+        int count = 0;
+        int[] a = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            a[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            a[t.charAt(i) - 'a']--;
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            count += Math.abs(a[i]);
+        }
+
+        return count;
     }
 
     public static void main(String[] args) {
